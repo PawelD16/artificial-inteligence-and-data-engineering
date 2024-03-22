@@ -15,7 +15,7 @@ def euclidean_distance(a: Tuple[int, ...], b: Tuple[int, ...]) -> float:
 
 
 def graph_init(graph: Dict[str, List[Edge]], start: str, start_time: timedelta) -> \
-        (Dict[str, List[timedelta]],
+        (Dict[str, timedelta],
          Dict[str, List[timedelta]],
          Dict[str, List[timedelta]],
          Dict[str, int],
@@ -55,7 +55,8 @@ def graph_init(graph: Dict[str, List[Edge]], start: str, start_time: timedelta) 
         lines,
         cost_so_far,
         queue,
-        visited_nodes)
+        visited_nodes
+    )
 
 
 def create_path(
@@ -102,13 +103,14 @@ def check_if_will_make_it_in_time(
             or (edge.line == curr_line and curr_time == edge.departure_time))
 
 
-def generic_optimisation_function(
+def generic_bfs_function(
         graph: Dict[str, List[Edge]],
         start: str,
         goal: str,
         start_time: timedelta,
         optimisation_function: Callable[[Edge, float, ], float],
-        calculate_new_cost: Callable[[timedelta, timedelta], float]
+        calculate_new_cost: Callable[[timedelta, timedelta], float],
+        stop_immediately_on_goal: bool
 ) -> (int, str, timedelta, timedelta, int):
     (
         previous_nodes,
@@ -126,7 +128,7 @@ def generic_optimisation_function(
         if curr_node not in visited_nodes:
             visited_nodes.append(curr_node)  # mark as visited
 
-            if curr_node == goal:
+            if curr_node == goal and stop_immediately_on_goal:
                 break  # done :)
 
             # check route to all neighbours with optimisation function

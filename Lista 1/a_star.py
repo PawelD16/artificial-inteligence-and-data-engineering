@@ -3,7 +3,7 @@ import math
 from typing import Dict, List
 from connection_node import Edge
 from utils import create_path, euclidean_distance, graph_init, check_if_will_make_it_in_time, \
-    generic_optimisation_function, calculate_cost_simple
+    generic_bfs_function, calculate_cost_simple
 from datetime import timedelta
 
 T_P_MULTIPLIER = 10
@@ -26,7 +26,7 @@ def astar_t(graph: Dict[str, List[Edge]], start: str, goal: str, start_time: tim
         # calculate distance between goal and neighbour coordinates
         return new_cost + heuristic_fn(goal_coordinates, neighbour_coordinates)
 
-    return generic_optimisation_function(graph, start, goal, start_time, astar_t_inner, calculate_cost_simple)
+    return generic_bfs_function(graph, start, goal, start_time, astar_t_inner, calculate_cost_simple, True)
 
 
 def a_star_helper(graph, start, goal, start_time, start_line, multiplier):

@@ -227,18 +227,4 @@ def time_comparison(gg):
 if __name__ == "__main__":
     gg = get_graph_dict()
 
-    run_dijkstra(
-        gg,
-        "Iwiny - rondo",
-        "Hala Stulecia",
-        datetime.timedelta(hours=14, minutes=38, seconds=0),
-    )
-
-    run_astar(
-        gg,
-        "Iwiny - rondo",
-        "Hala Stulecia",
-        "all",
-        datetime.timedelta(hours=14, minutes=38, seconds=0),
-    )
-
+    time_comparison(gg)

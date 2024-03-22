@@ -1,12 +1,14 @@
 import math
 from datetime import timedelta
 from random import shuffle, sample
+from typing import List
 
 from a_star import astar_p, astar_t
 from dijkstra import dijkstra_t
+from tabu_data_holder import TabuDataHolder, NeighbourhoodData, init_neighbour_data
 
 
-def tabu_init(graph, opt, start, start_time, stops):
+def tabu_init(graph, opt, start, start_time, stops) -> TabuDataHolder:
     stops_count = len(stops)
     current_solution = stops
     shuffle(current_solution)
@@ -24,7 +26,7 @@ def tabu_init(graph, opt, start, start_time, stops):
     improve_thresh = 2 * math.floor(math.sqrt(max_iterations))
     tabu_tenure = stops_count
     tabu_list = []
-    return (
+    return TabuDataHolder(
         best_arrival_time,
         best_departure_time,
         best_line,
@@ -37,10 +39,11 @@ def tabu_init(graph, opt, start, start_time, stops):
         stops_count,
         tabu_list,
         tabu_tenure,
-        turns_improved)
+        turns_improved
+    )
 
 
-def get_path_cost(gg, start, stops, opt, start_time):
+def get_path_cost(graph, start, stops, opt, start_time):
     # initialize variables
     curr_time = start_time
     curr_stop = start
@@ -52,9 +55,9 @@ def get_path_cost(gg, start, stops, opt, start_time):
 
     for stop in stops:
         if opt == "t":
-            cost, path, arrival_time, departure_time, line = astar_t(gg, curr_stop, stop, curr_time)
+            cost, path, arrival_time, departure_time, line = astar_t(graph, curr_stop, stop, curr_time)
         elif opt == "p":
-            cost, path, arrival_time, departure_time, line = astar_p(gg, curr_stop, stop, curr_time)
+            cost, path, arrival_time, departure_time, line = astar_p(graph, curr_stop, stop, curr_time)
 
         # update variables by adding calculated values
         final_cost += cost
@@ -72,7 +75,7 @@ def get_path_cost(gg, start, stops, opt, start_time):
 
     # run dijkstra
     cost, path, arrival_time, departure_time, line = dijkstra_t(
-        gg, curr_stop, start, curr_time
+        graph, curr_stop, start, curr_time
     )
 
     # update variables by adding calculated values
@@ -99,201 +102,93 @@ def sample_neighborhood(current_solution):
     return sampled_neighbors
 
 
-def tabu_calc(
-        best_arrival_time,
-        best_departure_time,
-        best_line,
-        best_path,
-        best_solution,
-        best_solution_cost,
-        current_solution,
-        gg,
-        improve_thresh,
-        max_iterations,
-        opt,
-        start,
-        start_time,
-        stops_count,
-        tabu_list,
-        tabu_tenure,
-        turns_improved
-):
-    for iteration in range(max_iterations):
-        if turns_improved > improve_thresh:
+def tabu_calc(data_holder, graph, opt, start, start_time):
+    for iteration in range(data_holder.max_iterations):
+        if data_holder.turns_improved > data_holder.improve_thresh:
             break
 
-        # initialize variables
-        best_neighbour = None
-        best_neighbour_cost = float("inf")
-        best_neighbour_path = []
-        best_neighbour_arrival_time = []
-        best_neighbour_departure_time = []
-        best_neighbour_line = []
-        coord_a, coord_b = 0, 0
+        neighbourhood_data = init_neighbour_data()
 
         # getting the best_neighbour
-        for i in range(stops_count):
-            for j in range(i + 1, stops_count):
-                neighbour = current_solution
+        for i in range(data_holder.stops_count):
+            for j in range(i + 1, data_holder.stops_count):
+                neighbour = data_holder.current_solution
                 neighbour[i], neighbour[j] = neighbour[j], neighbour[i]  # swapping
 
-                (
-                    best_neighbour,
-                    best_neighbour_arrival_time,
-                    best_neighbour_cost,
-                    best_neighbour_departure_time,
-                    best_neighbour_line,
-                    best_neighbour_path,
-                    coord_a, coord_b
-                ) = find_best_neighbour(
-                    best_neighbour,
-                    best_neighbour_arrival_time,
-                    best_neighbour_cost,
-                    best_neighbour_departure_time,
-                    best_neighbour_line,
-                    best_neighbour_path,
-                    coord_a,
-                    coord_b,
-                    gg,
+                neighbourhood_data = find_best_neighbour(
+                    neighbourhood_data,
+                    graph,
                     i,
                     j,
                     neighbour,
                     opt,
                     start,
                     start_time,
-                    tabu_list)
-            tabu_list.append((coord_a, coord_b))
+                    data_holder.tabu_list)
+            data_holder.tabu_list.append((neighbourhood_data.coord_a, neighbourhood_data.coord_b))
 
-        (
-            best_arrival_time,
-            best_departure_time,
-            best_line,
-            best_path,
-            best_solution,
-            best_solution_cost,
-            current_solution,
-            turns_improved
-        ) = choose_neighbour(
-            best_arrival_time,
-            best_departure_time,
-            best_line,
-            best_neighbour,
-            best_neighbour_arrival_time,
-            best_neighbour_cost,
-            best_neighbour_departure_time,
-            best_neighbour_line,
-            best_neighbour_path,
-            best_path,
-            best_solution,
-            best_solution_cost,
-            coord_a,
-            coord_b,
-            current_solution,
-            tabu_list,
-            tabu_tenure,
-            turns_improved
-        )
+        (neighbourhood_data, data_holder) = choose_neighbour(neighbourhood_data, data_holder)
     return (
-        best_solution,
-        best_solution_cost,
-        best_path,
-        best_arrival_time,
-        best_departure_time,
-        best_line,
+        data_holder.best_solution,
+        data_holder.best_solution_cost,
+        data_holder.best_path,
+        data_holder.best_arrival_time,
+        data_holder.best_departure_time,
+        data_holder.best_line,
     )
 
 
 def choose_neighbour(
-        best_arrival_time,
-        best_departure_time,
-        best_line,
-        best_neighbour,
-        best_neighbour_arrival_time,
-        best_neighbour_cost,
-        best_neighbour_departure_time,
-        best_neighbour_line,
-        best_neighbour_path,
-        best_path,
-        best_solution,
-        best_solution_cost,
-        coord_a,
-        coord_b,
-        current_solution,
-        tabu_list,
-        tabu_tenure,
-        turns_improved
-):
-    if best_neighbour is not None:
-        current_solution = best_neighbour
-        tabu_list.append((coord_a, coord_b))
+        neighbourhood_data: NeighbourhoodData,
+        tabu_data: TabuDataHolder
+) -> (NeighbourhoodData, TabuDataHolder):
+    if neighbourhood_data.best_neighbour is not None:
+        tabu_data.current_solution = neighbourhood_data.best_neighbour
+        tabu_data.tabu_list.append((neighbourhood_data.coord_a, neighbourhood_data.coord_b))
 
-        if len(tabu_list) > tabu_tenure:
-            tabu_list.pop(0)
-        if best_neighbour_cost < best_solution_cost:
+        if len(tabu_data.tabu_list) > tabu_data.tabu_tenure:
+            tabu_data.tabu_list.pop(0)
+        if neighbourhood_data.best_neighbour_cost < tabu_data.best_solution_cost:
             # set new values for best_variables
-            best_solution = best_neighbour
-            best_solution_cost = best_neighbour_cost
-            best_path = best_neighbour_path
-            best_arrival_time = best_neighbour_arrival_time
-            best_departure_time = best_neighbour_departure_time
-            best_line = best_neighbour_line
+            tabu_data.best_solution = neighbourhood_data.best_neighbour
+            tabu_data.best_solution_cost = neighbourhood_data.best_neighbour_cost
+            tabu_data.best_path = neighbourhood_data.best_neighbour_path
+            tabu_data.best_arrival_time = neighbourhood_data.best_neighbour_arrival_time
+            tabu_data.best_departure_time = neighbourhood_data.best_neighbour_departure_time
+            tabu_data.best_line = neighbourhood_data.best_neighbour_line
             # reset turns counter
-            turns_improved = 0
+            tabu_data.turns_improved = 0
         else:
-            turns_improved = turns_improved + 1
-    return (
-        best_arrival_time,
-        best_departure_time,
-        best_line, best_path,
-        best_solution,
-        best_solution_cost,
-        current_solution,
-        turns_improved
-    )
+            tabu_data.turns_improved = tabu_data.turns_improved + 1
+    return neighbourhood_data, tabu_data
 
 
 def find_best_neighbour(
-        best_neighbour,
-        best_neighbour_arrival_time,
-        best_neighbour_cost,
-        best_neighbour_departure_time,
-        best_neighbour_line,
-        best_neighbour_path,
-        coord_a,
-        coord_b,
-        gg,
+        neighbourhood_data: NeighbourhoodData,
+        graph,
         i,
         j,
         neighbour,
         opt,
         start,
         start_time,
-        tabu_list):
+        tabu_list) -> NeighbourhoodData:
     (
         neighbour_cost,
         neighbour_path,
         neighbour_arrival_time,
         neighbour_departure_time,
         neighbour_line,
-    ) = get_path_cost(gg, start, neighbour, opt, start_time)
+    ) = get_path_cost(graph, start, neighbour, opt, start_time)
     if (i, j) not in tabu_list:
-
-        if neighbour_cost < best_neighbour_cost:
+        if neighbour_cost < neighbourhood_data.best_neighbour_cost:
             # set new values for best_neighbour variables
-            best_neighbour = neighbour
-            best_neighbour_cost = neighbour_cost
-            best_neighbour_path = neighbour_path
-            best_neighbour_arrival_time = neighbour_arrival_time
-            best_neighbour_departure_time = neighbour_departure_time
-            best_neighbour_line = neighbour_line
-            coord_a, coord_b = i, j
-    return (
-        best_neighbour,
-        best_neighbour_arrival_time,
-        best_neighbour_cost,
-        best_neighbour_departure_time,
-        best_neighbour_line,
-        best_neighbour_path,
-        coord_a,
-        coord_b
-    )
+            neighbourhood_data.best_neighbour = neighbour
+            neighbourhood_data.best_neighbour_cost = neighbour_cost
+            neighbourhood_data.best_neighbour_path = neighbour_path
+            neighbourhood_data.best_neighbour_arrival_time = neighbour_arrival_time
+            neighbourhood_data.best_neighbour_departure_time = neighbour_departure_time
+            neighbourhood_data.best_neighbour_line = neighbour_line
+            neighbourhood_data.coord_a, neighbourhood_data.coord_b = i, j
+
+    return neighbourhood_data
