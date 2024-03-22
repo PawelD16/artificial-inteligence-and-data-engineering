@@ -101,7 +101,7 @@ def astar_t_p(graph: Dict[str, List[Edge]], start, goal, start_time):
     return astar_generic_helper(graph, goal, start, start_time, T_P_MULTIPLIER)
 
 
-def astar_generic_helper(graph: Dict[str, List[Edge]], goal, start, start_time, multiplayer):
+def astar_generic_helper(graph: Dict[str, List[Edge]], goal, start, start_time, multiplier):
     available_lines = []
     for edge in graph[start]:
         if edge.line not in available_lines:
@@ -120,7 +120,7 @@ def astar_generic_helper(graph: Dict[str, List[Edge]], goal, start, start_time, 
             lines,
             prev_nodes,
             cost_so_far,
-        ) = a_star_helper(graph, start, goal, start_time, line, multiplayer)
+        ) = a_star_helper(graph, start, goal, start_time, line, multiplier)
 
         if final_cost > cost_so_far[goal]:
             # set new values for final variables
