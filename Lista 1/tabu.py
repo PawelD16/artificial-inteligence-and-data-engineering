@@ -100,7 +100,6 @@ def tabu_c(gg, start, stops, opt, start_time):
 
                 # MODIFICATION (2.c): adding is_aspirational function
                 if (i, j) not in data_holder.tabu_list or is_aspirational(neighbour_cost, data_holder.best_solution_cost):
-                    print(type(neighbour_cost))
                     if neighbour_cost < neighbourhood_data.best_neighbour_cost:
                         # set new values for best_neighbour variables
                         neighbourhood_data.best_neighbour = neighbour

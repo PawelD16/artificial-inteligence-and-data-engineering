@@ -1,0 +1,456 @@
+C:\Users\pawel\AppData\Local\Programs\Python\Python312\python.exe "C:\Users\pawel\Desktop\Uczelnia\Sztuczna Inteligencja i Inzynieria Wiedzy\Lista 1\main.py" 
+
+---------- TABU SEARCH - time - tabu ------------------------
+stop count = 1 :  2.2597591876983643 
+
+['GALERIA DOMINIKAŃSKA']
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+8 :  10:08:00  - 10:11:00
+Hala Targowa
+9 :  10:14:00  - 10:17:00
+GALERIA DOMINIKAŃSKA
+10 :  10:17:00  - 10:20:00
+Urząd Wojewódzki (Muzeum Narodowe)
+N :  10:22:00  - 10:31:00
+KROMERA
+
+---------- TABU SEARCH - transfers - tabu ------------------------
+stop count = 1 :  11.573421955108643 
+
+['GALERIA DOMINIKAŃSKA']
+KROMERA
+N :  09:59:00  - 10:12:00
+GALERIA DOMINIKAŃSKA
+D :  10:10:00  - 10:23:00
+Kwidzyńska
+116  :  10:27:00  - 10:30:00
+KROMERA
+
+---------- TABU SEARCH - time - tabu ------------------------
+stop count = 2 :  14.41400408744812 
+
+['Rynek', 'PL. GRUNWALDZKI']
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+128  :  10:08:00  - 10:11:00
+Dubois
+6 :  10:14:00  - 10:19:00
+Rynek
+10 :  10:18:00  - 10:31:00
+PL. GRUNWALDZKI
+D :  10:28:00  - 10:32:00
+Kochanowskiego
+111 :  10:34:00  - 10:36:00
+Śniadeckich
+D :  10:38:00  - 10:40:00
+Kwidzyńska
+116  :  10:42:00  - 10:45:00
+KROMERA
+
+---------- TABU SEARCH - transfers - tabu ------------------------
+stop count = 2 :  111.78144359588623 
+
+['PL. GRUNWALDZKI', 'Rynek']
+KROMERA
+132 :  10:01:00  - 10:23:00
+Rynek
+13 :  10:24:00  - 10:36:00
+PL. GRUNWALDZKI
+19 :  10:33:00  - 10:37:00
+Piastowska
+1 :  10:40:00  - 10:43:00
+Wyszyńskiego
+128  :  10:46:00  - 10:50:00
+KROMERA
+
+---------- TABU SEARCH - time - tabu ------------------------
+stop count = 3 :  74.16007232666016 
+
+['Katedra', 'GALERIA DOMINIKAŃSKA', 'Niedźwiedzia']
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+9 :  10:08:00  - 10:10:00
+Ogród Botaniczny
+111 :  10:12:00  - 10:16:00
+pl. Bema
+6 :  10:20:00  - 10:23:00
+Dubois
+14 :  10:26:00  - 10:33:00
+PL. JANA PAWŁA II
+3 :  10:35:00  - 10:42:00
+Niedźwiedzia
+102 :  10:39:00  - 10:49:00
+PL. JANA PAWŁA II
+13 :  10:52:00  - 10:59:00
+GALERIA DOMINIKAŃSKA
+10 :  10:55:00  - 10:59:00
+Urząd Wojewódzki (Muzeum Narodowe)
+N :  11:01:00  - 11:10:00
+KROMERA
+
+---------- TABU SEARCH - transfers - tabu ------------------------
+stop count = 3 :  1397.6839725971222 
+
+['Niedźwiedzia', 'Katedra', 'GALERIA DOMINIKAŃSKA']
+KROMERA
+N :  09:59:00  - 10:07:00
+Katedra
+2 :  10:06:00  - 10:11:00
+GALERIA DOMINIKAŃSKA
+12 :  10:11:00  - 10:26:00
+Niedźwiedzia
+102 :  10:24:00  - 10:34:00
+PL. JANA PAWŁA II
+15 :  10:36:00  - 10:38:00
+Kępa Mieszczańska
+144 :  10:41:00  - 10:45:00
+Dubois
+6 :  10:47:00  - 10:59:00
+KROMERA
+
+---------- TABU SEARCH - time - tabu_b ------------------------
+stop count = 1 :  2.853476047515869 
+
+['GALERIA DOMINIKAŃSKA']
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+8 :  10:08:00  - 10:11:00
+Hala Targowa
+9 :  10:14:00  - 10:17:00
+GALERIA DOMINIKAŃSKA
+10 :  10:17:00  - 10:20:00
+Urząd Wojewódzki (Muzeum Narodowe)
+N :  10:22:00  - 10:31:00
+KROMERA
+
+---------- TABU SEARCH - transfers - tabu_b ------------------------
+stop count = 1 :  14.28534483909607 
+
+['GALERIA DOMINIKAŃSKA']
+KROMERA
+N :  09:59:00  - 10:12:00
+GALERIA DOMINIKAŃSKA
+D :  10:10:00  - 10:23:00
+Kwidzyńska
+116  :  10:27:00  - 10:30:00
+KROMERA
+
+---------- TABU SEARCH - time - tabu_b ------------------------
+stop count = 2 :  17.545966625213623 
+
+['PL. GRUNWALDZKI', 'Rynek']
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+128  :  10:08:00  - 10:11:00
+Dubois
+6 :  10:14:00  - 10:19:00
+Rynek
+10 :  10:18:00  - 10:31:00
+PL. GRUNWALDZKI
+D :  10:28:00  - 10:32:00
+Kochanowskiego
+111 :  10:34:00  - 10:36:00
+Śniadeckich
+D :  10:38:00  - 10:40:00
+Kwidzyńska
+116  :  10:42:00  - 10:45:00
+KROMERA
+
+---------- TABU SEARCH - transfers - tabu_b ------------------------
+stop count = 2 :  133.55126976966858 
+
+['PL. GRUNWALDZKI', 'Rynek']
+KROMERA
+132 :  10:01:00  - 10:23:00
+Rynek
+13 :  10:24:00  - 10:36:00
+PL. GRUNWALDZKI
+19 :  10:33:00  - 10:37:00
+Piastowska
+1 :  10:40:00  - 10:43:00
+Wyszyńskiego
+128  :  10:46:00  - 10:50:00
+KROMERA
+
+---------- TABU SEARCH - time - tabu_b ------------------------
+stop count = 3 :  90.80031418800354 
+
+['GALERIA DOMINIKAŃSKA', 'Niedźwiedzia', 'Katedra']
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+8 :  10:08:00  - 10:11:00
+Hala Targowa
+9 :  10:14:00  - 10:17:00
+GALERIA DOMINIKAŃSKA
+5 :  10:16:00  - 10:17:00
+Wzgórze Partyzantów
+148 :  10:20:00  - 10:30:00
+Śrubowa
+142 :  10:35:00  - 10:38:00
+pl. Strzegomski (Muzeum Współczesne)
+10 :  10:40:00  - 10:44:00
+Niedźwiedzia
+3 :  10:42:00  - 10:56:00
+GALERIA DOMINIKAŃSKA
+N :  10:58:00  - 11:10:00
+KROMERA
+
+---------- TABU SEARCH - transfers - tabu_b ------------------------
+stop count = 3 :  1141.3837914466858 
+
+['Katedra', 'GALERIA DOMINIKAŃSKA', 'Niedźwiedzia']
+KROMERA
+N :  09:59:00  - 10:07:00
+Katedra
+2 :  10:06:00  - 10:11:00
+GALERIA DOMINIKAŃSKA
+12 :  10:11:00  - 10:26:00
+Niedźwiedzia
+102 :  10:24:00  - 10:34:00
+PL. JANA PAWŁA II
+15 :  10:36:00  - 10:38:00
+Kępa Mieszczańska
+144 :  10:41:00  - 10:45:00
+Dubois
+6 :  10:47:00  - 10:59:00
+KROMERA
+
+---------- TABU SEARCH - time - tabu_c ------------------------
+stop count = 1 :  2.789276599884033 
+
+['GALERIA DOMINIKAŃSKA']
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+8 :  10:08:00  - 10:11:00
+Hala Targowa
+9 :  10:14:00  - 10:17:00
+GALERIA DOMINIKAŃSKA
+10 :  10:17:00  - 10:20:00
+Urząd Wojewódzki (Muzeum Narodowe)
+N :  10:22:00  - 10:31:00
+KROMERA
+
+---------- TABU SEARCH - transfers - tabu_c ------------------------
+stop count = 1 :  14.109159469604492 
+
+['GALERIA DOMINIKAŃSKA']
+KROMERA
+N :  09:59:00  - 10:12:00
+GALERIA DOMINIKAŃSKA
+D :  10:10:00  - 10:23:00
+Kwidzyńska
+116  :  10:27:00  - 10:30:00
+KROMERA
+
+---------- TABU SEARCH - time - tabu_c ------------------------
+stop count = 2 :  17.38776922225952 
+
+['PL. GRUNWALDZKI', 'Rynek']
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+128  :  10:08:00  - 10:11:00
+Dubois
+6 :  10:14:00  - 10:19:00
+Rynek
+10 :  10:18:00  - 10:31:00
+PL. GRUNWALDZKI
+D :  10:28:00  - 10:32:00
+Kochanowskiego
+111 :  10:34:00  - 10:36:00
+Śniadeckich
+D :  10:38:00  - 10:40:00
+Kwidzyńska
+116  :  10:42:00  - 10:45:00
+KROMERA
+
+---------- TABU SEARCH - transfers - tabu_c ------------------------
+stop count = 2 :  133.43172121047974 
+
+['Rynek', 'PL. GRUNWALDZKI']
+KROMERA
+132 :  10:01:00  - 10:23:00
+Rynek
+13 :  10:24:00  - 10:36:00
+PL. GRUNWALDZKI
+19 :  10:33:00  - 10:37:00
+Piastowska
+1 :  10:40:00  - 10:43:00
+Wyszyńskiego
+128  :  10:46:00  - 10:50:00
+KROMERA
+
+---------- TABU SEARCH - time - tabu_c ------------------------
+
+stop count = 3 :  90.94900035858154 
+
+['GALERIA DOMINIKAŃSKA', 'Katedra', 'Niedźwiedzia']
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+8 :  10:08:00  - 10:11:00
+Hala Targowa
+9 :  10:14:00  - 10:17:00
+GALERIA DOMINIKAŃSKA
+5 :  10:16:00  - 10:17:00
+Wzgórze Partyzantów
+148 :  10:20:00  - 10:30:00
+Śrubowa
+142 :  10:35:00  - 10:38:00
+pl. Strzegomski (Muzeum Współczesne)
+10 :  10:40:00  - 10:44:00
+Niedźwiedzia
+3 :  10:42:00  - 10:56:00
+GALERIA DOMINIKAŃSKA
+N :  10:58:00  - 11:10:00
+KROMERA
+
+---------- TABU SEARCH - transfers - tabu_c ------------------------
+
+stop count = 3 :  1138.7556645870209 
+
+['Katedra', 'Niedźwiedzia', 'GALERIA DOMINIKAŃSKA']
+KROMERA
+N :  09:59:00  - 10:12:00
+GALERIA DOMINIKAŃSKA
+2 :  10:09:00  - 10:13:00
+Katedra
+A :  10:11:00  - 10:13:00
+Urząd Wojewódzki (Muzeum Narodowe)
+10 :  10:17:00  - 10:35:00
+Niedźwiedzia
+3 :  10:33:00  - 10:40:00
+PL. JANA PAWŁA II
+15 :  10:43:00  - 10:50:00
+Dubois
+6 :  10:52:00  - 10:54:00
+pl. Bema
+9 :  10:56:00  - 10:58:00
+Ogród Botaniczny
+A :  11:00:00  - 11:08:00
+KROMERA
+
+
+---------- TABU SEARCH - time - tabu_d ------------------------
+stop count = 1 :  2.996381998062134 
+
+['GALERIA DOMINIKAŃSKA']
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+8 :  10:08:00  - 10:11:00
+Hala Targowa
+9 :  10:14:00  - 10:17:00
+GALERIA DOMINIKAŃSKA
+10 :  10:17:00  - 10:20:00
+Urząd Wojewódzki (Muzeum Narodowe)
+N :  10:22:00  - 10:31:00
+KROMERA
+
+---------- TABU SEARCH - transfers - tabu_d ------------------------
+stop count = 1 :  12.838628768920898 
+
+['GALERIA DOMINIKAŃSKA']
+KROMERA
+N :  09:59:00  - 10:12:00
+GALERIA DOMINIKAŃSKA
+D :  10:10:00  - 10:23:00
+Kwidzyńska
+116  :  10:27:00  - 10:30:00
+KROMERA
+
+---------- TABU SEARCH - time - tabu_d ------------------------
+stop count = 2 :  14.682247638702393 
+
+['Rynek', 'PL. GRUNWALDZKI']
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+128  :  10:08:00  - 10:11:00
+Dubois
+6 :  10:14:00  - 10:19:00
+Rynek
+10 :  10:18:00  - 10:31:00
+PL. GRUNWALDZKI
+D :  10:28:00  - 10:32:00
+Kochanowskiego
+111 :  10:34:00  - 10:36:00
+Śniadeckich
+D :  10:38:00  - 10:40:00
+Kwidzyńska
+116  :  10:42:00  - 10:45:00
+KROMERA
+
+---------- TABU SEARCH - transfers - tabu_d ------------------------
+stop count = 2 :  172.06060338020325 
+
+['Rynek', 'PL. GRUNWALDZKI']
+KROMERA
+132 :  10:01:00  - 10:23:00
+Rynek
+13 :  10:24:00  - 10:36:00
+PL. GRUNWALDZKI
+19 :  10:33:00  - 10:37:00
+Piastowska
+1 :  10:40:00  - 10:43:00
+Wyszyńskiego
+128  :  10:46:00  - 10:50:00
+KROMERA
+
+---------- TABU SEARCH - time - tabu_d ------------------------
+stop count = 3 :  93.60610938072205 
+
+['Katedra', 'Niedźwiedzia', 'GALERIA DOMINIKAŃSKA']
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+9 :  10:08:00  - 10:10:00
+Ogród Botaniczny
+111 :  10:12:00  - 10:16:00
+pl. Bema
+6 :  10:20:00  - 10:23:00
+Dubois
+14 :  10:26:00  - 10:33:00
+PL. JANA PAWŁA II
+3 :  10:35:00  - 10:42:00
+Niedźwiedzia
+102 :  10:39:00  - 10:49:00
+PL. JANA PAWŁA II
+13 :  10:52:00  - 10:59:00
+GALERIA DOMINIKAŃSKA
+10 :  10:55:00  - 10:59:00
+Urząd Wojewódzki (Muzeum Narodowe)
+N :  11:01:00  - 11:10:00
+KROMERA
+
+---------- TABU SEARCH - transfers - tabu_d ------------------------
+stop count = 3 :  1220.5708074569702 
+
+['Katedra', 'GALERIA DOMINIKAŃSKA', 'Niedźwiedzia']
+KROMERA
+N :  09:59:00  - 10:07:00
+Katedra
+2 :  10:06:00  - 10:11:00
+GALERIA DOMINIKAŃSKA
+12 :  10:11:00  - 10:26:00
+Niedźwiedzia
+102 :  10:24:00  - 10:34:00
+PL. JANA PAWŁA II
+15 :  10:36:00  - 10:38:00
+Kępa Mieszczańska
+144 :  10:41:00  - 10:45:00
+Dubois
+6 :  10:47:00  - 10:59:00
+KROMERA
+
+Process finished with exit code 0
+
+

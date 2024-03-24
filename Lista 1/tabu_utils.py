@@ -1,7 +1,6 @@
 import math
 from datetime import timedelta
 from random import shuffle, sample
-from typing import List
 
 from a_star import astar_p, astar_t
 from dijkstra import dijkstra_t
@@ -44,7 +43,6 @@ def tabu_init(graph, opt, start, start_time, stops) -> TabuDataHolder:
 
 
 def get_path_cost(graph, start, stops, opt, start_time):
-    # initialize variables
     curr_time = start_time
     curr_stop = start
     final_cost = 0
@@ -59,12 +57,13 @@ def get_path_cost(graph, start, stops, opt, start_time):
         elif opt == "p":
             cost, path, arrival_time, departure_time, line = astar_p(graph, curr_stop, stop, curr_time)
 
-        # update variables by adding calculated values
-        final_cost += cost
-        final_path = final_path + path[1:]
-        final_arrival_time = final_arrival_time + arrival_time[1:]
-        final_departure_time = final_departure_time + departure_time[1:]
-        final_line = final_line + line[1:]
+        if opt == "t" or opt == "p":
+            # update variables by adding calculated values
+            final_cost += cost
+            final_path = final_path + path[1:]
+            final_arrival_time = final_arrival_time + arrival_time[1:]
+            final_departure_time = final_departure_time + departure_time[1:]
+            final_line = final_line + line[1:]
 
         curr_stop = stop
         curr_time = timedelta(
@@ -73,7 +72,7 @@ def get_path_cost(graph, start, stops, opt, start_time):
             seconds=arrival_time[len(path) - 1].second,
         )
 
-    # run dijkstra
+        # run dijkstra
     cost, path, arrival_time, departure_time, line = dijkstra_t(
         graph, curr_stop, start, curr_time
     )
@@ -88,11 +87,13 @@ def get_path_cost(graph, start, stops, opt, start_time):
 
 
 def is_aspirational(cost, best_solution_cost):
-    threshold = 0.8 * best_solution_cost
-    return cost < threshold
+    return cost < 0.8 * best_solution_cost
 
 
 def sample_neighborhood(current_solution):
+    if len(current_solution) < 2:
+        return current_solution
+
     sampled_neighbors = []
     for _ in range(len(current_solution)):
         neighbor = current_solution[:]
