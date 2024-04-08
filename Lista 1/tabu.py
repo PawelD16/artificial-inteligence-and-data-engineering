@@ -1,22 +1,23 @@
 import math
 import random
+from typing import Callable
 
 from tabu_data_holder import NeighbourhoodData, init_neighbour_data
 from tabu_utils import tabu_calc, choose_neighbour, is_aspirational, get_path_cost, tabu_init, sample_neighborhood, \
     find_best_neighbour
 
 
-def tabu(graph, start, stops, opt, start_time):
-    data_holder = tabu_init(graph, opt, start, start_time, stops)
+def tabu(graph, start, stops, opt, start_time, heuristic_fn: Callable[[tuple[float, ...], tuple[float, ...]], float]):
+    data_holder = tabu_init(graph, opt, start, start_time, stops, heuristic_fn)
 
     return tabu_calc(data_holder, graph, opt, start, start_time)
 
 
-def tabu_b(graph, start, stops, opt, start_time):
+def tabu_b(graph, start, stops, opt, start_time, heuristic_fn: Callable[[tuple[float, ...], tuple[float, ...]], float]):
     current_solution = stops
     random.shuffle(current_solution)
     data_holder = tabu_init(
-        graph, opt, start, start_time, stops
+        graph, opt, start, start_time, stops, heuristic_fn
     )
 
     # MODIFICATION (2.b): Adjusting tabu tenure based on neighborhood size
@@ -28,9 +29,9 @@ def tabu_b(graph, start, stops, opt, start_time):
     return tabu_calc(data_holder, graph, opt, start, start_time)
 
 
-def tabu_d(graph, start, stops, opt, start_time):
+def tabu_d(graph, start, stops, opt, start_time, heuristic_fn: Callable[[tuple[float, ...], tuple[float, ...]], float]):
     data_holder = tabu_init(
-        graph, opt, start, start_time, stops
+        graph, opt, start, start_time, stops, heuristic_fn
     )
 
     for iteration in range(data_holder.max_iterations):
@@ -72,9 +73,9 @@ def tabu_d(graph, start, stops, opt, start_time):
     )
 
 
-def tabu_c(gg, start, stops, opt, start_time):
+def tabu_c(gg, start, stops, opt, start_time, heuristic_fn: Callable[[tuple[float, ...], tuple[float, ...]], float]):
     data_holder = tabu_init(
-        gg, opt, start, start_time, stops
+        gg, opt, start, start_time, stops, heuristic_fn
     )
 
     for iteration in range(data_holder.max_iterations):
@@ -96,10 +97,11 @@ def tabu_c(gg, start, stops, opt, start_time):
                     neighbour_arrival_time,
                     neighbour_departure_time,
                     neighbour_line,
-                ) = get_path_cost(gg, start, neighbour, opt, start_time)
+                ) = get_path_cost(gg, start, neighbour, opt, start_time, heuristic_fn)
 
                 # MODIFICATION (2.c): adding is_aspirational function
-                if (i, j) not in data_holder.tabu_list or is_aspirational(neighbour_cost, data_holder.best_solution_cost):
+                if (i, j) not in data_holder.tabu_list or is_aspirational(neighbour_cost,
+                                                                          data_holder.best_solution_cost):
                     if neighbour_cost < neighbourhood_data.best_neighbour_cost:
                         # set new values for best_neighbour variables
                         neighbourhood_data.best_neighbour = neighbour

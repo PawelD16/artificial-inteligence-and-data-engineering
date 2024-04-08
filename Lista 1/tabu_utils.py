@@ -1,13 +1,21 @@
 import math
 from datetime import timedelta
 from random import shuffle, sample
+from typing import Callable
 
 from a_star import astar_p, astar_t
 from dijkstra import dijkstra_t
 from tabu_data_holder import TabuDataHolder, NeighbourhoodData, init_neighbour_data
 
 
-def tabu_init(graph, opt, start, start_time, stops) -> TabuDataHolder:
+def tabu_init(
+        graph,
+        opt,
+        start,
+        start_time,
+        stops,
+        heuristic_fn: Callable[[tuple[float, ...], tuple[float, ...]], float]
+) -> TabuDataHolder:
     stops_count = len(stops)
     current_solution = stops
     shuffle(current_solution)
@@ -19,7 +27,7 @@ def tabu_init(graph, opt, start, start_time, stops) -> TabuDataHolder:
         best_arrival_time,
         best_departure_time,
         best_line,
-    ) = get_path_cost(graph, start, best_solution, opt, start_time)
+    ) = get_path_cost(graph, start, best_solution, opt, start_time, heuristic_fn)
     max_iterations = math.ceil(1.1 * (stops_count ** 2))
     turns_improved = 0
     improve_thresh = 2 * math.floor(math.sqrt(max_iterations))
@@ -42,7 +50,14 @@ def tabu_init(graph, opt, start, start_time, stops) -> TabuDataHolder:
     )
 
 
-def get_path_cost(graph, start, stops, opt, start_time):
+def get_path_cost(
+        graph,
+        start,
+        stops,
+        opt,
+        start_time,
+        heuristic_fn: Callable[[tuple[float, ...], tuple[float, ...]], float]
+):
     curr_time = start_time
     curr_stop = start
     final_cost = 0
@@ -53,9 +68,9 @@ def get_path_cost(graph, start, stops, opt, start_time):
 
     for stop in stops:
         if opt == "t":
-            cost, path, arrival_time, departure_time, line = astar_t(graph, curr_stop, stop, curr_time)
+            cost, path, arrival_time, departure_time, line = astar_t(graph, curr_stop, stop, curr_time, heuristic_fn)
         elif opt == "p":
-            cost, path, arrival_time, departure_time, line = astar_p(graph, curr_stop, stop, curr_time)
+            cost, path, arrival_time, departure_time, line = astar_p(graph, curr_stop, stop, curr_time, heuristic_fn)
 
         if opt == "t" or opt == "p":
             # update variables by adding calculated values

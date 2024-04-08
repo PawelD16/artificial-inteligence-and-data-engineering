@@ -6,11 +6,11 @@ from typing import Dict, List, Callable, Tuple
 from connection_node import Edge
 
 
-def manhattan_distance(a: Tuple[int, ...], b: Tuple[int, ...]) -> float:
+def manhattan_distance(a: Tuple[float, ...], b: Tuple[float, ...]) -> float:
     return sum(abs(x - y) for x, y in zip(a, b)) * 100
 
 
-def euclidean_distance(a: Tuple[int, ...], b: Tuple[int, ...]) -> float:
+def euclidean_distance(a: Tuple[float, ...], b: Tuple[float, ...]) -> float:
     return math.sqrt(sum((x - y) ** 2 for x, y in zip(a, b))) * 1000
 
 
@@ -155,3 +155,30 @@ def generic_bfs_function(
 
 def calculate_cost_simple(arrival_time: timedelta, start_time: timedelta) -> float:
     return (arrival_time - start_time).seconds / 60
+
+
+def print_path(cost, path, arrival_times, departure_times, lines):
+    if len(path) <= 1:
+        return
+
+    print("Cost: ", cost)
+
+    print(path[0])
+    print(lines[1], ": ", departure_times[1], " - ", end="")
+
+    prev_line = lines[1]
+    prev_arrival_time = arrival_times[1]
+    prev_stop = path[1]
+
+    for i in range(len(path)):
+        if i > 0:
+            if prev_line != lines[i]:
+                if i > 1:
+                    print(prev_arrival_time)
+                    print(prev_stop)
+                print(lines[i], ": ", departure_times[i], " - ", end="")
+            prev_line = lines[i]
+            prev_arrival_time = arrival_times[i]
+            prev_stop = path[i]
+    print(arrival_times[len(path) - 1])
+    print(prev_stop)

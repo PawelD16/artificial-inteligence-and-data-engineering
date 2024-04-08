@@ -1,19 +1,21 @@
-import datetime
 import math
-from typing import Dict, List
-from connection_node import Edge
-from utils import create_path, euclidean_distance, graph_init, check_if_will_make_it_in_time, \
-    generic_bfs_function, calculate_cost_simple
 from datetime import timedelta
+from typing import Dict, List, Callable
+
+from connection_node import Edge
+from utils import create_path, graph_init, check_if_will_make_it_in_time, generic_bfs_function, calculate_cost_simple
 
 T_P_MULTIPLIER = 10
 P_MULTIPLIER = 100
 
 
-def astar_t(graph: Dict[str, List[Edge]], start: str, goal: str, start_time: timedelta):
-    # define a heuristic function
-    heuristic_fn = lambda a, b: euclidean_distance(a, b)
-
+def astar_t(
+        graph: Dict[str, List[Edge]],
+        start: str,
+        goal: str,
+        start_time: timedelta,
+        heuristic_fn: Callable[[tuple[float, ...], tuple[float, ...]], float]
+):
     def astar_t_inner(edge, new_cost) -> float:
         goal_coordinates = (
             float(graph[goal][0].end_lat),  # end_stop_lat
@@ -23,15 +25,20 @@ def astar_t(graph: Dict[str, List[Edge]], start: str, goal: str, start_time: tim
             float(edge.end_lat),
             float(edge.end_lon),
         )
-        # calculate distance between goal and neighbour coordinates
         return new_cost + heuristic_fn(goal_coordinates, neighbour_coordinates)
 
     return generic_bfs_function(graph, start, goal, start_time, astar_t_inner, calculate_cost_simple, True)
 
 
-def a_star_helper(graph, start, goal, start_time, start_line, multiplier):
-    # define a heuristic function
-    heuristic_fn = lambda a, b: euclidean_distance(a, b)
+def a_star_helper(
+        graph,
+        start,
+        goal,
+        start_time,
+        start_line,
+        multiplier,
+        heuristic_fn: Callable[[tuple[float, ...], tuple[float, ...]], float]
+):
     (
         previous_nodes,
         arrival_times,
@@ -93,15 +100,34 @@ def a_star_helper(graph, start, goal, start_time, start_line, multiplier):
     return goal, arrival_times, departure_times, lines, previous_nodes, cost_so_far
 
 
-def astar_p(graph: Dict[str, List[Edge]], start, goal, start_time):
-    return astar_generic_helper(graph, goal, start, start_time, P_MULTIPLIER)
+def astar_p(
+        graph: Dict[str, List[Edge]],
+        start,
+        goal,
+        start_time,
+        heuristic_fn: Callable[[tuple[float, ...], tuple[float, ...]], float]
+):
+    return astar_generic_helper(graph, goal, start, start_time, P_MULTIPLIER, heuristic_fn)
 
 
-def astar_t_p(graph: Dict[str, List[Edge]], start, goal, start_time):
-    return astar_generic_helper(graph, goal, start, start_time, T_P_MULTIPLIER)
+def astar_t_p(
+        graph: Dict[str, List[Edge]],
+        start,
+        goal,
+        start_time,
+        heuristic_fn: Callable[[tuple[float, ...], tuple[float, ...]], float]
+):
+    return astar_generic_helper(graph, goal, start, start_time, T_P_MULTIPLIER, heuristic_fn)
 
 
-def astar_generic_helper(graph: Dict[str, List[Edge]], goal, start, start_time, multiplier):
+def astar_generic_helper(
+        graph: Dict[str, List[Edge]],
+        goal,
+        start,
+        start_time,
+        multiplier,
+        heuristic_fn: Callable[[tuple[float, ...], tuple[float, ...]], float]
+):
     available_lines = []
     for edge in graph[start]:
         if edge.line not in available_lines:
@@ -120,7 +146,7 @@ def astar_generic_helper(graph: Dict[str, List[Edge]], goal, start, start_time, 
             lines,
             prev_nodes,
             cost_so_far,
-        ) = a_star_helper(graph, start, goal, start_time, line, multiplier)
+        ) = a_star_helper(graph, start, goal, start_time, line, multiplier, heuristic_fn)
 
         if final_cost > cost_so_far[goal]:
             # set new values for final variables
@@ -133,5 +159,3 @@ def astar_generic_helper(graph: Dict[str, List[Edge]], goal, start, start_time, 
         goal, final_arrival_times, final_departure_times, final_lines, final_prev_nodes
     )
     return cost_so_far[goal], path, arrival_time, departure_time, line
-
-
