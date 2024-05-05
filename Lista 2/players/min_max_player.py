@@ -55,30 +55,29 @@ class MinMaxPlayer(HeuristicPlayer):
             best_finish_field = None
             best_start_field = None
 
-            for moves in game_engine.get_board().get_all_allowed_moves(
+            for move in game_engine.get_board().get_all_allowed_moves(
                 base_player.get_type()
             ):
-                for move in moves:
-                    # simulated_board = game_engine.get_board().simulate_move(move, base_player.get_type())
+                # simulated_board = game_engine.get_board().simulate_move(move, base_player.get_type())
 
-                    if not make_possible_move(move):
-                        raise Exception(f"Can't make move {move}")
+                if not make_possible_move(move):
+                    raise Exception(f"Can't make move {move}")
 
-                    (_, quality, _) = self.__minmax(
-                        depth - 1,
-                        is_maximizing_player_inner,
-                        game_engine,
-                        player,
-                        enemy,
-                    )
+                (_, quality, _) = self.__minmax(
+                    depth - 1,
+                    is_maximizing_player_inner,
+                    game_engine,
+                    player,
+                    enemy,
+                )
 
-                    if compare_fn(quality, best_quality):
-                        best_quality = quality
-                        best_finish_field = move.get_last_field_of_moves()
-                        best_start_field = move.get_starting_field()
+                if compare_fn(quality, best_quality):
+                    best_quality = quality
+                    best_finish_field = move.get_last_field_of_moves()
+                    best_start_field = move.get_starting_field()
 
-                    if not undo_possible_move(move):
-                        raise Exception(f"Can't undo move {move}")
+                if not undo_possible_move(move):
+                    raise Exception(f"Can't undo move {move}")
 
             return best_finish_field, best_quality, best_start_field
 

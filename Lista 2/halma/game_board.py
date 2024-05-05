@@ -81,24 +81,19 @@ class GameBoard:
         if not self.is_within_bounds(x, y):
             raise ValueError(f"x: {x} or y: {y} out of range.")
 
-        return [
-            PossibleMove(
-                self.get_field(x, y), [field], self.get_field(x, y).occupied_by()
-            )
-            for field in self.__check_moves(x, y)
-        ] + self.__check_jumps(x, y)
+        return self.__check_jumps(x, y) + self.__check_moves(x, y)
 
     def get_all_allowed_moves(
         self, player_type: PlayerType
-    ) -> List[List[PossibleMove]]:
-        all_player_pieces: List[List[PossibleMove]] = []
+    ) -> List[PossibleMove]:
+        all_player_pieces: List[PossibleMove] = []
 
         for row in self.__game_board:
             for field in row:
                 if field.occupied_by() == player_type:
                     allowed_moves = self.allowed_moves(field.get_x(), field.get_y())
                     if len(allowed_moves) > 0:
-                        all_player_pieces.append(allowed_moves)
+                        all_player_pieces += allowed_moves
 
         return all_player_pieces
 
@@ -108,21 +103,19 @@ class GameBoard:
     def rotate_90_degrees(self) -> None:
         # rotating in place from
         # https://www.geeksforgeeks.org/rotate-a-matrix-by-90-degree-in-clockwise-direction-without-using-any-extra-space/
-        for i in range(self.__size // 2):
-            for j in range(i, self.__size - i - 1):
+        s = self.__size
+
+        for i in range(s // 2):
+            for j in range(i, s - i - 1):
                 temp = self.__game_board[i][j]
-                self.__game_board[i][j] = self.__game_board[self.__size - 1 - j][i]
-                self.__game_board[self.__size - 1 - j][i] = self.__game_board[
-                    self.__size - 1 - i
-                ][self.__size - 1 - j]
-                self.__game_board[self.__size - 1 - i][self.__size - 1 - j] = (
-                    self.__game_board[j][self.__size - 1 - i]
-                )
-                self.__game_board[j][self.__size - 1 - i] = temp
+                self.__game_board[i][j] = self.__game_board[s - 1 - j][i]
+                self.__game_board[s - 1 - j][i] = self.__game_board[s - 1 - i][s - 1 - j]
+                self.__game_board[s - 1 - i][s - 1 - j] = self.__game_board[j][s - 1 - i]
+                self.__game_board[j][s - 1 - i] = temp
 
         # update the x and y properties of each object to reflect new positions
-        for x in range(self.__size):
-            for y in range(self.__size):
+        for x in range(s):
+            for y in range(s):
                 field = self.__game_board[x][y]
                 field.set_x(x)
                 field.set_y(y)
@@ -130,17 +123,24 @@ class GameBoard:
     def is_within_bounds(self, x: int, y: int) -> bool:
         return 0 <= x < self.__size and 0 <= y < self.__size
 
-    def __check_moves(self, x: int, y: int) -> List[Field]:
+    def __check_moves(self, x: int, y: int) -> List[PossibleMove]:
         possible_moves = []
+        starting_field = self.get_field(x, y)
 
         for direction_x, direction_y in self.__possible_move_directions:
             checked_x, checked_y = x + direction_x, y + direction_y
 
             if (
                 self.is_within_bounds(checked_x, checked_y)
-                and self.get_field(checked_x, checked_y).can_be_occupied()
+                and (checked_field := self.get_field(checked_x, checked_y)).can_be_occupied()
             ):
-                possible_moves.append(self.get_field(checked_x, checked_y))
+                possible_moves.append(
+                    PossibleMove(
+                        starting_field,
+                        [checked_field],
+                        starting_field.occupied_by(),
+                    )
+                )
 
         return possible_moves
 
@@ -173,9 +173,7 @@ class GameBoard:
                         and current_move not in current_already_checked
                     ):
 
-                        new_current_moves = current_moves + [
-                            self.get_field(jump_x, jump_y)
-                        ]
+                        new_current_moves = current_moves + [self.get_field(jump_x, jump_y)]
                         possible_jumps.append(
                             PossibleMove(
                                 starting_field,
@@ -192,25 +190,13 @@ class GameBoard:
         return possible_jumps
 
     def __str__(self):
-        row_count = self.__size
-        col_count = self.__size
+        header = " ".join(f"{col:3}" for col in range(self.__size))
+        separator = "  " + "---" * self.__size
 
-        game_board_str = ""
+        rows = []
+        for x in range(self.__size):
+            row = f"{x:2}|" + "".join(f"{str(self.get_field(x, y)):3}" for y in range(self.__size))
+            rows.append(row)
 
-        game_board_str += " "
-        for col in range(col_count):
-            game_board_str += f"{col:3}"
-        game_board_str += "\n"
+        return f"   {header}\n{separator}\n" + "\n".join(rows) + f"\n{separator}\n"
 
-        game_board_str += "  " + "---" * col_count + "\n"
-
-        for x in range(row_count):
-            game_board_str += f"{x:2}|"
-            for y in range(col_count):
-                game_board_str += f"{str(self.get_field(x, y)):3}"
-
-            game_board_str += "\n"
-
-        game_board_str += "  " + "---" * col_count + "\n"
-
-        return game_board_str

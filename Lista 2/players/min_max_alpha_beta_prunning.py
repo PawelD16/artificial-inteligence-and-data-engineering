@@ -64,28 +64,27 @@ class MinMaxAlphaBetaPrunedPlayer(HeuristicPlayer):
             best_finish_field = None
             best_start_field = None
 
-            for moves in game_engine.get_board().get_all_allowed_moves(
+            for move in game_engine.get_board().get_all_allowed_moves(
                 player.get_type()
             ):
-                for move in moves:
-                    if not make_possible_move(move):
-                        raise Exception(f"Can't make move {move}")
+                if not make_possible_move(move):
+                    raise Exception(f"Can't make move {move}")
 
-                    (_, quality, _) = self.__minmax_α_β_pruning(
-                        depth - 1, False, game_engine, player, enemy, alpha, beta
-                    )
+                (_, quality, _) = self.__minmax_α_β_pruning(
+                    depth - 1, False, game_engine, player, enemy, alpha, beta
+                )
 
-                    if quality > best_quality:
-                        best_quality = quality
-                        best_finish_field = move.get_last_field_of_moves()
-                        best_start_field = move.get_starting_field()
+                if quality > best_quality:
+                    best_quality = quality
+                    best_finish_field = move.get_last_field_of_moves()
+                    best_start_field = move.get_starting_field()
 
-                    if not undo_possible_move(move):
-                        raise Exception(f"Can't undo move {move}")
+                if not undo_possible_move(move):
+                    raise Exception(f"Can't undo move {move}")
 
-                    alpha = max(best_quality, alpha)
-                    if beta <= alpha:
-                        break
+                alpha = max(best_quality, alpha)
+                if beta <= alpha:
+                    break
 
             return best_finish_field, best_quality, best_start_field
         else:
@@ -93,27 +92,26 @@ class MinMaxAlphaBetaPrunedPlayer(HeuristicPlayer):
             best_finish_field = None
             best_start_field = None
 
-            for moves in game_engine.get_board().get_all_allowed_moves(
+            for move in game_engine.get_board().get_all_allowed_moves(
                 enemy.get_type()
             ):
-                for move in moves:
-                    if not make_possible_move(move):
-                        raise Exception(f"Can't make move {move}")
+                if not make_possible_move(move):
+                    raise Exception(f"Can't make move {move}")
 
-                    (_, quality, _) = self.__minmax_α_β_pruning(
-                        depth - 1, True, game_engine, player, enemy, alpha, beta
-                    )
+                (_, quality, _) = self.__minmax_α_β_pruning(
+                    depth - 1, True, game_engine, player, enemy, alpha, beta
+                )
 
-                    if quality < best_quality:
-                        best_quality = quality
-                        best_finish_field = move.get_last_field_of_moves()
-                        best_start_field = move.get_starting_field()
+                if quality < best_quality:
+                    best_quality = quality
+                    best_finish_field = move.get_last_field_of_moves()
+                    best_start_field = move.get_starting_field()
 
-                    if not undo_possible_move(move):
-                        raise Exception(f"Can't undo move {move}")
+                if not undo_possible_move(move):
+                    raise Exception(f"Can't undo move {move}")
 
-                    beta = min(best_quality, beta)
-                    if beta <= alpha:
-                        break
+                beta = min(best_quality, beta)
+                if beta <= alpha:
+                    break
 
             return best_finish_field, best_quality, best_start_field

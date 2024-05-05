@@ -21,6 +21,6 @@ class RandomPlayer(BasePlayer):
         self, game_engine: BaseGameEngine
     ) -> (Field | None, Field | None):
         all_moves = game_engine.get_board().get_all_allowed_moves(self.get_type())
-        chosen = choice(choice(all_moves))
+        chosen = choice(all_moves)
 
         return chosen.get_starting_field(), chosen.get_last_field_of_moves()
