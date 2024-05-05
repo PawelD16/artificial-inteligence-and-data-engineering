@@ -9,7 +9,7 @@ class ConsoleInterface(BaseInterface):
         super().__init__(game_board)
 
     def display(self) -> None:
-        print(self.get_game_board())
+        print(self._game_board)
 
     def on_player_won(self, player: BasePlayer) -> None:
         print(f"{player} won!")

@@ -7,10 +7,7 @@ from players.base_player import BasePlayer
 class BaseInterface(ABC):
 
     def __init__(self, game_board: GameBoard) -> None:
-        self.__game_board = game_board
-
-    def get_game_board(self) -> GameBoard:
-        return self.__game_board
+        self._game_board = game_board
 
     @abstractmethod
     def display(self) -> None:
