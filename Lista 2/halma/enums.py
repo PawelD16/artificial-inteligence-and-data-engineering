@@ -13,7 +13,16 @@ class PlayerType(Enum):
 
 
 class PlayerCount(Enum):
-    TWO_PLAYERS = 0, [PlayerType.PLAYER1, PlayerType.PLAYER2], 19, 2
+    TWO_PLAYERS = (
+        0,
+        [
+            PlayerType.PLAYER1,
+            PlayerType.PLAYER2
+        ],
+        19,
+        2
+    )
+
     FOUR_PLAYERS = (
         1,
         [

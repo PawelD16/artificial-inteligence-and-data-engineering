@@ -11,6 +11,7 @@ class GameManager:
 
     def start_game(self) -> None:
         no_moves_counter_in_row = 0
+        turn = 1
 
         while (
             not self.__game_engine.check_if_current_player_won()
@@ -19,6 +20,7 @@ class GameManager:
             current_player = self.__game_engine.get_current_player()
             current_enemy = self.__game_engine.get_enemy_of_player(current_player)
 
+            self.__output_interface.show_turn(turn)
             self.__output_interface.show_current_player(current_player)
             self.__output_interface.show_current_enemy(current_enemy)
 
@@ -42,6 +44,7 @@ class GameManager:
 
             self.__output_interface.display()
             self.__game_engine.change_player_turn()
+            turn += 1
 
         # game finished
 

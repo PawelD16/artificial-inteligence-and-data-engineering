@@ -11,10 +11,9 @@ from halma.enums import PlayerType
 from halma.field import Field
 from halma.moves.made_move import MadeMove, build_made_move
 from players.base_player import BasePlayer
-from players.heuristic_player import HeuristicPlayer
 
 
-class MinMaxAlphaBetaPrunedPlayer(HeuristicPlayer):
+class MinMaxAlphaBetaPrunedPlayer(BasePlayer):
     def __init__(
         self,
         player_type: PlayerType,

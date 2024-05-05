@@ -22,3 +22,6 @@ class ConsoleInterface(BaseInterface):
 
     def show_current_enemy(self, player: BasePlayer) -> None:
         print(f"Current enemy: {player}")
+
+    def show_turn(self, turn: int) -> None:
+        print(f"Turn number: {turn}")

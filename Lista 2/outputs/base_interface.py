@@ -28,3 +28,7 @@ class BaseInterface(ABC):
     @abstractmethod
     def show_current_enemy(self, player: BasePlayer) -> None:
         pass
+
+    @abstractmethod
+    def show_turn(self, turn: int) -> None:
+        pass
