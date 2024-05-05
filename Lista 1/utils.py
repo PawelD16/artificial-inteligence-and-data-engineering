@@ -157,9 +157,15 @@ def calculate_cost_simple(arrival_time: timedelta, start_time: timedelta) -> flo
     return (arrival_time - start_time).seconds / 60
 
 
+def datetime_time_total_seconds(t: datetime.time) -> int:
+    return t.hour * 3600 + t.minute * 60 + t.second
+
+
 def print_path(cost, path, arrival_times, departure_times, lines):
     if len(path) <= 1:
         return
+
+    total_time = 0
 
     print("Cost: ", cost)
 
@@ -179,6 +185,11 @@ def print_path(cost, path, arrival_times, departure_times, lines):
                 print(lines[i], ": ", departure_times[i], " - ", end="")
             prev_line = lines[i]
             prev_arrival_time = arrival_times[i]
+
+            total_time += (datetime_time_total_seconds(arrival_times[i])
+                           - datetime_time_total_seconds(departure_times[i])) / 60.0
             prev_stop = path[i]
     print(arrival_times[len(path) - 1])
     print(prev_stop)
+
+    print("Total time: ", total_time)

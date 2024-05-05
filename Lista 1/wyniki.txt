@@ -455,4 +455,309 @@ Process finished with exit code 0
 
 # Algorytmy optymalizacji
 
+C:\Users\pawel\AppData\Local\Programs\Python\Python312\python.exe "C:\Users\pawel\Desktop\Uczelnia\Sztuczna Inteligencja i Inzynieria Wiedzy\Lista 1\main.py"
+__________________ EUCLIDEAN DISTANCE __________________
+MAŁY DYSTANS:
+_________________________ Dijkstra _________________________
+Cost:  6.0
+PL. GRUNWALDZKI
+12 :  09:58:00  - 10:00:00
+most Grunwaldzki
+D :  10:02:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+Dijkstra:  3.6178247928619385
+
+_________________________ A* - transfers _________________________
+Cost:  209.0
+PL. GRUNWALDZKI
+D :  09:59:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+A* - time:  3.477022647857666
+
+_________________________ A* - time _________________________
+Cost:  9.0
+PL. GRUNWALDZKI
+12 :  09:58:00  - 10:00:00
+most Grunwaldzki
+D :  10:04:00  - 10:09:00
+GALERIA DOMINIKAŃSKA
+A* - transfers:  0.02751469612121582
+
+
+_________________________ A* - time & transfers _________________________
+Cost:  29.0
+PL. GRUNWALDZKI
+D :  09:59:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+A* - time & transfers:  1.4898333549499512
+
+
+
+
+
+ŚREDNI DYSTANS:
+_________________________ Dijkstra _________________________
+Cost:  22.0
+Katedra
+A :  09:59:00  - 10:01:00
+Urząd Wojewódzki (Muzeum Narodowe)
+N :  10:03:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+3 :  10:08:00  - 10:22:00
+Niedźwiedzia
+Dijkstra:  3.514124631881714
+
+_________________________ A* - transfers _________________________
+Cost:  332.0
+Katedra
+2 :  10:00:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+3 :  10:08:00  - 10:22:00
+Niedźwiedzia
+A* - time:  16.578147649765015
+
+_________________________ A* - time _________________________
+Cost:  35.0
+Katedra
+A :  10:01:00  - 10:03:00
+Ogród Botaniczny
+128  :  10:05:00  - 10:26:00
+Kwiska
+21 :  10:28:00  - 10:29:00
+Małopanewska
+12 :  10:34:00  - 10:35:00
+Niedźwiedzia
+A* - transfers:  0.19526052474975586
+
+
+_________________________ A* - time & transfers _________________________
+Cost:  62.0
+Katedra
+2 :  10:00:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+3 :  10:08:00  - 10:22:00
+Niedźwiedzia
+A* - time & transfers:  5.174036264419556
+
+
+
+
+
+DUŻY DYSTANS:
+_________________________ Dijkstra _________________________
+Cost:  50.0
+KROMERA
+6 :  09:58:00  - 10:00:00
+Mosty Warszawskie
+N :  10:04:00  - 10:21:00
+DWORZEC AUTOBUSOWY
+145 :  10:23:00  - 10:27:00
+Borowska (Aquapark)
+113 :  10:31:00  - 10:33:00
+Śliczna
+K :  10:36:00  - 10:38:00
+Działkowa
+612 :  10:42:00  - 10:44:00
+Borowska (Szpital)
+112 :  10:46:00  - 10:50:00
+Parafialna
+Dijkstra:  3.746645927429199
+
+_________________________ A* - transfers _________________________
+Cost:  282.0
+KROMERA
+A :  10:12:00  - 11:01:00
+KRZYKI
+113 :  11:05:00  - 11:22:00
+Parafialna
+A* - time:  53.30720639228821
+
+_________________________ A* - time _________________________
+Cost:  82.0
+KROMERA
+6 :  09:58:00  - 10:06:00
+pl. Bema
+128  :  10:08:00  - 10:11:00
+Dubois
+7 :  10:13:00  - 10:25:00
+Arkady (Capitol)
+21 :  10:28:00  - 10:31:00
+DWORZEC AUTOBUSOWY
+113 :  10:33:00  - 10:36:00
+Borowska (Aquapark)
+K :  10:40:00  - 10:45:00
+Działkowa
+113 :  10:50:00  - 10:52:00
+Borowska (Szpital)
+112 :  11:10:00  - 11:12:00
+Przystankowa
+113 :  11:16:00  - 11:18:00
+Wojszyce
+612 :  11:20:00  - 11:22:00
+Parafialna
+A* - transfers:  1.283686876296997
+
+
+_________________________ A* - time & transfers _________________________
+Cost:  85.0
+KROMERA
+N :  09:59:00  - 10:19:00
+DWORZEC AUTOBUSOWY
+110 :  10:22:00  - 10:36:00
+Malinowskiego
+310 :  10:40:00  - 10:46:00
+Parafialna
+A* - time & transfers:  25.661920309066772
+
+
+
+__________________ MANHATTAN DISTANCE __________________
+MAŁY DYSTANS:
+_________________________ Dijkstra _________________________
+Cost:  6.0
+PL. GRUNWALDZKI
+12 :  09:58:00  - 10:00:00
+most Grunwaldzki
+D :  10:02:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+Dijkstra:  3.4014933109283447
+
+_________________________ A* - transfers _________________________
+Cost:  206.0
+PL. GRUNWALDZKI
+13 :  09:59:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+A* - time:  4.267215967178345
+
+_________________________ A* - time _________________________
+Cost:  6.0
+PL. GRUNWALDZKI
+12 :  09:58:00  - 10:00:00
+most Grunwaldzki
+D :  10:02:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+A* - transfers:  0.06548857688903809
+
+
+_________________________ A* - time & transfers _________________________
+Cost:  26.0
+PL. GRUNWALDZKI
+13 :  09:59:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+A* - time & transfers:  3.145705461502075
+
+
+
+
+
+ŚREDNI DYSTANS:
+_________________________ Dijkstra _________________________
+Cost:  22.0
+Katedra
+A :  09:59:00  - 10:01:00
+Urząd Wojewódzki (Muzeum Narodowe)
+N :  10:03:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+3 :  10:08:00  - 10:22:00
+Niedźwiedzia
+Dijkstra:  3.434069871902466
+
+_________________________ A* - transfers _________________________
+Cost:  327.0
+Katedra
+2 :  10:00:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+3 :  10:08:00  - 10:22:00
+Niedźwiedzia
+A* - time:  19.385501384735107
+
+_________________________ A* - time _________________________
+Cost:  22.0
+Katedra
+A :  09:59:00  - 10:01:00
+Urząd Wojewódzki (Muzeum Narodowe)
+N :  10:03:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+3 :  10:08:00  - 10:22:00
+Niedźwiedzia
+A* - transfers:  0.5617868900299072
+
+
+_________________________ A* - time & transfers _________________________
+Cost:  57.0
+Katedra
+2 :  10:00:00  - 10:06:00
+GALERIA DOMINIKAŃSKA
+3 :  10:08:00  - 10:22:00
+Niedźwiedzia
+A* - time & transfers:  14.597805976867676
+
+
+
+
+
+DUŻY DYSTANS:
+_________________________ Dijkstra _________________________
+Cost:  50.0
+KROMERA
+6 :  09:58:00  - 10:00:00
+Mosty Warszawskie
+N :  10:04:00  - 10:21:00
+DWORZEC AUTOBUSOWY
+145 :  10:23:00  - 10:27:00
+Borowska (Aquapark)
+113 :  10:31:00  - 10:33:00
+Śliczna
+K :  10:36:00  - 10:38:00
+Działkowa
+612 :  10:42:00  - 10:44:00
+Borowska (Szpital)
+112 :  10:46:00  - 10:50:00
+Parafialna
+Dijkstra:  3.6851966381073
+
+_________________________ A* - transfers _________________________
+Cost:  282.0
+KROMERA
+A :  10:12:00  - 11:01:00
+KRZYKI
+113 :  11:05:00  - 11:22:00
+Parafialna
+A* - time:  112.37651753425598
+
+_________________________ A* - time _________________________
+Cost:  50.0
+KROMERA
+6 :  09:58:00  - 10:00:00
+Mosty Warszawskie
+N :  10:04:00  - 10:21:00
+DWORZEC AUTOBUSOWY
+9 :  10:24:00  - 10:27:00
+Uniwersytet Ekonomiczny
+143 :  10:30:00  - 10:33:00
+Śliczna
+K :  10:36:00  - 10:38:00
+Działkowa
+612 :  10:42:00  - 10:44:00
+Borowska (Szpital)
+112 :  10:46:00  - 10:50:00
+Parafialna
+A* - transfers:  2.450108528137207
+
+
+_________________________ A* - time & transfers _________________________
+Cost:  110.0
+KROMERA
+N :  09:59:00  - 10:19:00
+DWORZEC AUTOBUSOWY
+146 :  10:21:00  - 10:28:00
+ROD Bajki
+136 :  10:32:00  - 10:34:00
+Działkowa
+113 :  10:39:00  - 10:45:00
+Parafialna
+A* - time & transfers:  99.25957775115967
+
+
+Process finished with exit code 0
 
