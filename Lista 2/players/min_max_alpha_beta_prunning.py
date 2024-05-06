@@ -64,7 +64,7 @@ class MinMaxAlphaBetaPrunedPlayer(BasePlayer):
             best_start_field = None
 
             for move in game_engine.get_board().get_all_allowed_moves(
-                player.get_type()
+                player.get_type(), enemy.get_type()
             ):
                 if not make_possible_move(move):
                     raise Exception(f"Can't make move {move}")
@@ -92,7 +92,7 @@ class MinMaxAlphaBetaPrunedPlayer(BasePlayer):
             best_start_field = None
 
             for move in game_engine.get_board().get_all_allowed_moves(
-                enemy.get_type()
+                enemy.get_type(), player.get_type()
             ):
                 if not make_possible_move(move):
                     raise Exception(f"Can't make move {move}")

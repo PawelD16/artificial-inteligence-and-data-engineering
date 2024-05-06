@@ -46,6 +46,7 @@ class MinMaxPlayer(BasePlayer):
 
         def __inner_min_max(
             base_player: BasePlayer,
+            base_enemy_player: BasePlayer,
             initial_best_value: float,
             is_maximizing_player_inner: bool,
             compare_fn: Callable[[float, float], bool],
@@ -55,10 +56,8 @@ class MinMaxPlayer(BasePlayer):
             best_start_field = None
 
             for move in game_engine.get_board().get_all_allowed_moves(
-                base_player.get_type()
+                base_player.get_type(), base_enemy_player.get_type()
             ):
-                # simulated_board = game_engine.get_board().simulate_move(move, base_player.get_type())
-
                 if not make_possible_move(move):
                     raise Exception(f"Can't make move {move}")
 
@@ -88,6 +87,6 @@ class MinMaxPlayer(BasePlayer):
             )
 
         if is_maximizing_player:
-            return __inner_min_max(player, -math.inf, False, lambda a, b: a > b)
+            return __inner_min_max(player, enemy, -math.inf, False, lambda a, b: a > b)
         else:
-            return __inner_min_max(enemy, math.inf, True, lambda a, b: a < b)
+            return __inner_min_max(enemy, player, math.inf, True, lambda a, b: a < b)

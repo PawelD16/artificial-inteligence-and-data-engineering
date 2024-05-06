@@ -14,8 +14,8 @@ class GameManager:
         turn = 1
 
         while (
-            not self.__game_engine.check_if_current_player_won()
-            and no_moves_counter_in_row < self.__game_engine.get_player_count()
+            not (has_current_player_won := self.__game_engine.check_if_current_player_won())
+            # and no_moves_counter_in_row < self.__game_engine.get_player_count()
         ):
             current_player = self.__game_engine.get_current_player()
             current_enemy = self.__game_engine.get_enemy_of_player(current_player)
@@ -46,16 +46,12 @@ class GameManager:
             self.__game_engine.change_player_turn()
             turn += 1
 
-        # game finished
-
-        # has the player won?
-        if self.__game_engine.check_if_current_player_won():
-            self.__output_interface.on_player_won(
-                self.__game_engine.get_current_player()
-            )
-
         # if nobody won, then it's a draw
-        self.__output_interface.on_draw()
+        if not has_current_player_won:
+            self.__output_interface.on_draw()
+            return
+
+        self.__output_interface.on_player_won(self.__game_engine.get_current_player())
 
     def __str__(self) -> str:
         return str(self.__game_engine)

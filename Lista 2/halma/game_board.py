@@ -25,33 +25,25 @@ class GameBoard:
             (1, 1),
         ]
 
-    # def simulate_move(self, possible_move: PossibleMove, player_type: PlayerType) -> Self:
-    #     simulated_board: GameBoard = copy.deepcopy(self)
-    #
-    #     starting_field = possible_move.get_starting_field()
-    #     if possible_move.get_starting_field().occupied_by() != player_type:
-    #         raise Exception(f"Field {starting_field} should be occupied by {player_type} to be a starting field!")
-    #
-    #     if not simulated_board.get_field(starting_field.get_x(), starting_field.get_y()).free_if_possible():
-    #         raise Exception(f"Field {starting_field} should be free-able.")
-    #
-    #     ending_field = possible_move.get_singular_moves()[-1]
-    #     if not simulated_board.get_field(ending_field.get_x(), ending_field.get_y()).occupy_if_possible(player_type):
-    #         raise Exception(f"Field {ending_field} should be unoccupied to be the finishing field!")
-    #
-    #     return simulated_board
-
-    def check_if_entire_enemy_base_is_taken_over(
+    def check_if_enemy_base_taken_over(
         self, player: PlayerType, enemy_player: PlayerType
     ) -> bool:
+        total_enemy_base_fields = 0
+        total_player_pieces_in_enemy_base = 0
+        total_enemy_pieces_in_enemy_base = 0
+
         for row in self.__game_board:
             for field in row:
-                if not (
-                    field.base_of() == enemy_player and field.occupied_by() == player
-                ):
-                    return False
+                if field.base_of() == enemy_player:
+                    total_enemy_base_fields += 1
+                    
+                    if field.occupied_by() == player:
+                        total_player_pieces_in_enemy_base += 1
+                    elif field.occupied_by() == enemy_player:
+                        total_enemy_pieces_in_enemy_base += 1
 
-        return True
+        return (total_player_pieces_in_enemy_base > 0
+                and total_enemy_base_fields == total_enemy_pieces_in_enemy_base + total_player_pieces_in_enemy_base)
 
     def get_field(self, x: int, y: int) -> Field:
         if not self.is_within_bounds(x, y):
@@ -77,21 +69,21 @@ class GameBoard:
         return True
 
     # Jumping over your own pieces is allowed!
-    def allowed_moves(self, x: int, y: int) -> List[PossibleMove]:
+    def allowed_moves(self, x: int, y: int, enemy_player: PlayerType) -> List[PossibleMove]:
         if not self.is_within_bounds(x, y):
             raise ValueError(f"x: {x} or y: {y} out of range.")
 
-        return self.__check_jumps(x, y) + self.__check_moves(x, y)
+        return self.__check_jumps(x, y, enemy_player) + self.__check_moves(x, y, enemy_player)
 
     def get_all_allowed_moves(
-        self, player_type: PlayerType
+        self, player_type: PlayerType, enemy_player: PlayerType
     ) -> List[PossibleMove]:
         all_player_pieces: List[PossibleMove] = []
 
         for row in self.__game_board:
             for field in row:
                 if field.occupied_by() == player_type:
-                    allowed_moves = self.allowed_moves(field.get_x(), field.get_y())
+                    allowed_moves = self.allowed_moves(field.get_x(), field.get_y(), enemy_player)
                     if len(allowed_moves) > 0:
                         all_player_pieces += allowed_moves
 
@@ -123,7 +115,7 @@ class GameBoard:
     def is_within_bounds(self, x: int, y: int) -> bool:
         return 0 <= x < self.__size and 0 <= y < self.__size
 
-    def __check_moves(self, x: int, y: int) -> List[PossibleMove]:
+    def __check_moves(self, x: int, y: int, enemy_player: PlayerType) -> List[PossibleMove]:
         possible_moves = []
         starting_field = self.get_field(x, y)
 
@@ -134,17 +126,18 @@ class GameBoard:
                 self.is_within_bounds(checked_x, checked_y)
                 and (checked_field := self.get_field(checked_x, checked_y)).can_be_occupied()
             ):
-                possible_moves.append(
-                    PossibleMove(
-                        starting_field,
-                        [checked_field],
-                        starting_field.occupied_by(),
+                if not starting_field.base_of() == enemy_player or not checked_field.base_of() != enemy_player:
+                    possible_moves.append(
+                        PossibleMove(
+                            starting_field,
+                            [checked_field],
+                            starting_field.occupied_by(),
+                        )
                     )
-                )
 
         return possible_moves
 
-    def __check_jumps(self, x: int, y: int) -> List[PossibleMove]:
+    def __check_jumps(self, x: int, y: int, enemy_player: PlayerType) -> List[PossibleMove]:
         possible_jumps: List[PossibleMove] = []
 
         def __check_jumps_inner(
@@ -162,13 +155,14 @@ class GameBoard:
 
                 if self.is_within_bounds(jump_x, jump_y):
                     current_move = (
-                        self.get_field(inner_x, inner_y),
+                        checked_jump := self.get_field(inner_x, inner_y),
                         self.get_field(jump_x, jump_y),
                     )
                     checked = checked + [current_move]
 
                     if (
-                        self.get_field(jump_x, jump_y).can_be_occupied()
+                        checked_jump.can_be_occupied()
+                        and not (starting_field.base_of() == enemy_player and checked_jump.base_of() != enemy_player)
                         and not self.get_field(between_x, between_y).can_be_occupied()
                         and current_move not in current_already_checked
                     ):

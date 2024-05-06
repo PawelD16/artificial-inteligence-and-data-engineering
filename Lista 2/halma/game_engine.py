@@ -25,14 +25,10 @@ class GameEngine(BaseGameEngine):
         self.__game_board: GameBoard = game_board
         self.__set_all_starting_pieces(players, player_count)
         self.__players_queue: deque[BasePlayer] = deque(players)
+        self.__is_game_over: bool = False
 
     def get_player_count(self) -> int:
         return len(self.__players_queue)
-
-    # def copy_with_new_board(self, game_board: GameBoard) -> Self:
-    #     return GameEngine(
-    #         self.__player_count, copy.deepcopy(list(self.__players_queue)), game_board
-    #     )
 
     def get_enemy_of_player(self, player: BasePlayer) -> BasePlayer:
         index = self.__players_queue.index(player)
@@ -44,11 +40,7 @@ class GameEngine(BaseGameEngine):
         return self.__game_board
 
     def is_game_over(self) -> bool:
-        for player in self.__players_queue:
-            if len(self.get_board().get_all_allowed_moves(player.get_type())) > 0:
-                return False
-
-        return True
+        return self.check_if_current_player_won()
 
     def change_player_turn(self) -> None:
         first_element = self.__players_queue.popleft()
@@ -58,7 +50,7 @@ class GameEngine(BaseGameEngine):
         return self.__players_queue[0]
 
     def check_if_current_player_won(self) -> bool:
-        return self.get_board().check_if_entire_enemy_base_is_taken_over(
+        return self.get_board().check_if_enemy_base_taken_over(
             self.__players_queue[0].get_type(),
             self.__players_queue[len(self.__players_queue) // 2].get_type(),
         )
