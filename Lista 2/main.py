@@ -1,4 +1,4 @@
-from algorithms.heuristics import manhattan_distance, euclidean_distance
+from algorithms.heuristics import manhattan_distance, euclidean_distance, chebyshev_distance
 from halma.enums import PlayerCount
 from halma.game_board import GameBoard
 from halma.game_engine import GameEngine
@@ -10,13 +10,15 @@ from players.random_player import RandomPlayer
 
 def main() -> None:
     board_size = 16
-    player_count = PlayerCount.TWO_PLAYERS
+    player_count = PlayerCount.FOUR_PLAYERS
 
     game_board = GameBoard(board_size)
 
     players = [
         MinMaxAlphaBetaPrunedPlayer(player_count.player_types[0], euclidean_distance, 2, True),
-        RandomPlayer(player_count.player_types[1], manhattan_distance),
+        MinMaxAlphaBetaPrunedPlayer(player_count.player_types[1], manhattan_distance, 2, True),
+        MinMaxAlphaBetaPrunedPlayer(player_count.player_types[2], chebyshev_distance, 2, True),
+        RandomPlayer(player_count.player_types[3], euclidean_distance)
     ]
 
     game_engine = GameEngine(player_count, players, game_board)

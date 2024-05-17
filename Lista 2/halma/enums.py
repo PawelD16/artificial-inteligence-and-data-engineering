@@ -1,12 +1,31 @@
 from enum import Enum
-from typing import List
+from typing import List, Callable
+from colorama import Fore, Style
+
+
+def colorize(val, fore: Fore, style: Style):
+    leading_space = val[:len(val) - len(val.lstrip())]
+    trailing_space = val[len(val.rstrip()):]
+
+    return f"{leading_space}{fore}{val.strip()}{style}{trailing_space}"
 
 
 class PlayerType(Enum):
-    PLAYER1 = 1
-    PLAYER2 = 2
-    PLAYER3 = 3
-    PLAYER4 = 4
+    PLAYER1 = 1, lambda val: colorize(val + "  ", Fore.CYAN, Style.RESET_ALL)
+    PLAYER2 = 2, lambda val: colorize(val + "  ", Fore.GREEN, Style.RESET_ALL)
+    PLAYER3 = 3, lambda val: colorize(val + "  ", Fore.MAGENTA, Style.RESET_ALL)
+    PLAYER4 = 4, lambda val: colorize(val + "  ", Fore.YELLOW, Style.RESET_ALL)
+
+    def __new__(
+        cls,
+        value: int,
+        color_fn: Callable[[str], str]
+    ):
+        member = object.__new__(cls)
+        member._value_ = value
+        member.color_fn = color_fn
+
+        return member
 
     def __int__(self):
         return self.value

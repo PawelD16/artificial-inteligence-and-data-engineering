@@ -69,4 +69,4 @@ class Field:
         if self.__field_state == FieldState.EMPTY:
             return "0"
 
-        return str(int(self.__occupied_by))
+        return self.__occupied_by.color_fn(str(int(self.__occupied_by)))
