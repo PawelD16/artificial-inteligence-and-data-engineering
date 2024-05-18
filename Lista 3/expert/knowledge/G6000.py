@@ -10,73 +10,77 @@ class CannonG6000ProblemKnowledgeBase(KnowledgeEngine):
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_1300),
-            BrokenComponent(component_type=ComponentTypeG6000.BacksidePaperTray)
+            BrokenComponent(component_type=ComponentTypeG6000.BacksidePaperTray),
         )
     )
     def paper_jammed_on_fetching_from_backside_tray(self) -> None:
-        print_fault_and_solution("Paper jammed", "Remove jammed sheet from backside tray")
+        print_fault_and_solution(
+            "Paper jammed", "Remove jammed sheet from backside tray"
+        )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_1303),
-            BrokenComponent(component_type=ComponentTypeG6000.FrontCassette)
+            BrokenComponent(component_type=ComponentTypeG6000.FrontCassette),
         )
     )
     def paper_jammed_on_fetching_from_cassette_tray(self) -> None:
-        print_fault_and_solution("Paper jammed", "Remove jammed sheet from front side cassette")
+        print_fault_and_solution(
+            "Paper jammed", "Remove jammed sheet from front side cassette"
+        )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_1304),
-            BrokenComponent(component_type=ComponentTypeG6000.AnyPaperTray)
+            BrokenComponent(component_type=ComponentTypeG6000.AnyPaperTray),
         )
     )
     def paper_jammed_on_doublesided_print(self) -> None:
         print_fault_and_solution(
             "Paper jammed on doublesided print",
-            "Remove jammed sheet from the printing mechanism"
+            "Remove jammed sheet from the printing mechanism",
         )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_1313),
-            BrokenComponent(component_type=ComponentTypeG6000.PrintingMechanism)
+            BrokenComponent(component_type=ComponentTypeG6000.PrintingMechanism),
         )
     )
     def paper_jammed_on_already_printed_paper(self) -> None:
         print_fault_and_solution(
             "Already printed paper jammed",
-            "Remove jammed sheet from the top of the printing mechanism"
+            "Remove jammed sheet from the top of the printing mechanism",
         )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_1365),
-            BrokenComponent(component_type=ComponentTypeG6000.InkCartridge)
+            BrokenComponent(component_type=ComponentTypeG6000.InkCartridge),
         )
     )
     def ink_cartridge_open(self) -> None:
         print_fault_and_solution(
             "Ink cartridge open",
-            "Close all open cartridge valves before continuing to replace the print head"
+            "Close all open cartridge valves before continuing to replace the print head",
         )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_1366),
-            BrokenComponent(component_type=ComponentTypeG6000.InkCartridge)
+            BrokenComponent(component_type=ComponentTypeG6000.InkCartridge),
         )
     )
     def ink_cartridge_closed(self) -> None:
         print_fault_and_solution(
             "Ink cartridge closed",
-            "Open all closed cartridge valves before continuing with printing"
+            "Open all closed cartridge valves before continuing with printing",
         )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_1367),
-            BrokenComponent(component_type=ComponentTypeG6000.InkCartridge)
+            BrokenComponent(component_type=ComponentTypeG6000.InkCartridge),
         )
     )
     def not_enough_ink_to_flush(self) -> None:
@@ -91,40 +95,42 @@ class CannonG6000ProblemKnowledgeBase(KnowledgeEngine):
                 Error(code=ErrorCodeG6000.E_1472),
                 Error(code=ErrorCodeG6000.E_1473),
             ),
-            BrokenComponent(component_type=ComponentTypeG6000.PrintHead)
+            BrokenComponent(component_type=ComponentTypeG6000.PrintHead),
         )
     )
     def print_head_not_recognized(self) -> None:
         print_fault_and_solution(
             "Print head not recognized",
-            "Print head might be corrupted or counterfeit. Replace with correct print head"
+            "Print head might be corrupted or counterfeit. Replace with correct print head",
         )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_1470),
-            BrokenComponent(component_type=ComponentTypeG6000.PrintHead)
+            BrokenComponent(component_type=ComponentTypeG6000.PrintHead),
         )
     )
     def print_head_inserted_incorrectly(self) -> None:
-        print_fault_and_solution("Print head inserted incorrectly", "Reseat the print head")
+        print_fault_and_solution(
+            "Print head inserted incorrectly", "Reseat the print head"
+        )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_1476),
-            BrokenComponent(component_type=ComponentTypeG6000.PrintHead)
+            BrokenComponent(component_type=ComponentTypeG6000.PrintHead),
         )
     )
     def incorrect_print_head(self) -> None:
         print_fault_and_solution(
             "Incorrect pint head",
-            "Check if your print head model is supported by the printer"
+            "Check if your print head model is supported by the printer",
         )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_1641),
-            BrokenComponent(component_type=ComponentTypeG6000.InkCartridge)
+            BrokenComponent(component_type=ComponentTypeG6000.InkCartridge),
         )
     )
     def low_ink_level(self) -> None:
@@ -132,19 +138,19 @@ class CannonG6000ProblemKnowledgeBase(KnowledgeEngine):
             "Low ink level",
             "The level of remaining ink in one of the ink tanks "
             "may have equaled the lower limit line shown on the ink tank."
-            "Add ink"
+            "Add ink",
         )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_1642),
-            BrokenComponent(component_type=ComponentTypeG6000.InkCartridge)
+            BrokenComponent(component_type=ComponentTypeG6000.InkCartridge),
         )
     )
     def not_enough_ink(self) -> None:
         print_fault_and_solution(
             "Not enough ink to print",
-            "The amount of ink might not be enough to print. Add ink"
+            "The amount of ink might not be enough to print. Add ink",
         )
 
     @Rule(
@@ -152,29 +158,32 @@ class CannonG6000ProblemKnowledgeBase(KnowledgeEngine):
             OR(
                 Error(code=ErrorCodeG6000.E_1700),
                 Error(code=ErrorCodeG6000.E_1701),
-            ), BrokenComponent(component_type=ComponentTypeG6000.WasteInkContainer)
+            ),
+            BrokenComponent(component_type=ComponentTypeG6000.WasteInkContainer),
         )
     )
     def waste_ink_container_almost_full(self) -> None:
-        print_fault_and_solution("Waste ink container is amost full", "Empty it before continuing")
+        print_fault_and_solution(
+            "Waste ink container is amost full", "Empty it before continuing"
+        )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_1890),
-            BrokenComponent(component_type=ComponentTypeG6000.PrintHeadHolder)
+            BrokenComponent(component_type=ComponentTypeG6000.PrintHeadHolder),
         )
     )
     def print_head_holder_covered(self) -> None:
         print_fault_and_solution(
             "Print head holder covered",
             "It may be covered with residual protective film. "
-            "Remove the film before continuing"
+            "Remove the film before continuing",
         )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_2500),
-            BrokenComponent(component_type=ComponentTypeG6000.PrintHead)
+            BrokenComponent(component_type=ComponentTypeG6000.PrintHead),
         )
     )
     def automatic_print_head_alignment_not_working_correctly(self) -> None:
@@ -234,26 +243,26 @@ class CannonG6000ProblemKnowledgeBase(KnowledgeEngine):
     def printer_error(self) -> None:
         print_fault_and_solution(
             "Printer error",
-            "Unplug and replug the printer. If that doesn't help contact the manufacturer"
+            "Unplug and replug the printer. If that doesn't help contact the manufacturer",
         )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_5100),
-            BrokenComponent(component_type=ComponentTypeG6000.PrintHead)
+            BrokenComponent(component_type=ComponentTypeG6000.PrintHead),
         )
     )
     def printer_error_print_head(self) -> None:
         print_fault_and_solution(
             "Printer error",
             "Cancel current print by pressing Stop OR turn the printer off. "
-            "Check print head movement OR remove any obstructions. Turn on the printer."
+            "Check print head movement OR remove any obstructions. Turn on the printer.",
         )
 
     @Rule(
         OR(
             Error(code=ErrorCodeG6000.E_5200),
-            BrokenComponent(component_type=ComponentTypeG6000.InkCartridge)
+            BrokenComponent(component_type=ComponentTypeG6000.InkCartridge),
         )
     )
     def printer_error_ink(self) -> None:
@@ -273,7 +282,7 @@ class CannonG6000ProblemKnowledgeBase(KnowledgeEngine):
         print_fault_and_solution(
             "Printer error",
             "Remove paper jam OR unplug and replug the printer. "
-            "If that doesn't help contact the manufacture"
+            "If that doesn't help contact the manufacture",
         )
 
     @Rule(
@@ -282,7 +291,7 @@ class CannonG6000ProblemKnowledgeBase(KnowledgeEngine):
                 Error(code=ErrorCodeG6000.E_6A80),
                 Error(code=ErrorCodeG6000.E_6A81),
             ),
-            BrokenComponent(component_type=ComponentTypeG6000.PaperTransportModule)
+            BrokenComponent(component_type=ComponentTypeG6000.PaperTransportModule),
         )
     )
     def printer_error_transport_module(self) -> None:
@@ -290,7 +299,7 @@ class CannonG6000ProblemKnowledgeBase(KnowledgeEngine):
             "Printer error",
             "Paper may be jammed in the paper transport module. "
             "Remove jammed sheet from front side cassette."
-            "If that doesn't help contact the manufacture"
+            "If that doesn't help contact the manufacture",
         )
 
     @Rule(
@@ -304,14 +313,9 @@ class CannonG6000ProblemKnowledgeBase(KnowledgeEngine):
     def printer_error_require_repair(self) -> None:
         print_fault_and_solution(
             "Printer error requiring repair",
-            "Unplug the printer and contact the manufacturer"
+            "Unplug the printer and contact the manufacturer",
         )
 
-    @Rule(
-        AND(
-            Error(code=None),
-            BrokenComponent(component_type=None)
-        )
-    )
+    @Rule(AND(Error(code=None), BrokenComponent(component_type=None)))
     def undefined_problem(self) -> None:
         print("Everything works fine!")

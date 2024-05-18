@@ -123,4 +123,5 @@ class ErrorCodeDcp770cw(ErrorCode):
 
 class Error(Fact):
     """Represents the error returned by a device or component"""
+
     pass

@@ -6,12 +6,14 @@ from printers.Printer import Printer
 
 
 def diagnose_problem(
-        engine: KnowledgeEngine,
-        error_code: ErrorCode = None,
-        component_type: ComponentType = None,
+    engine: KnowledgeEngine,
+    error_code: ErrorCode = None,
+    component_type: ComponentType = None,
 ) -> None:
     engine.reset()
-    engine.declare(Error(code=error_code), BrokenComponent(component_type=component_type))
+    engine.declare(
+        Error(code=error_code), BrokenComponent(component_type=component_type)
+    )
     engine.run()
 
 

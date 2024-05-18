@@ -29,7 +29,7 @@ class BrotherDcp770DwProblemKnowledgeBase(KnowledgeEngine):
     def paper_jammed(self) -> None:
         print_fault_and_solution(
             "The machine does not operate due to a paper jam.",
-            "Remove jammed sheet from paper tray"
+            "Remove jammed sheet from paper tray",
         )
 
     @Rule(
@@ -47,7 +47,7 @@ class BrotherDcp770DwProblemKnowledgeBase(KnowledgeEngine):
         print_fault_and_solution(
             "The internal temperature is too high.",
             "Unplug the device from the power socket and, "
-            "if possible, lower the temperature of the room in which the device is located."
+            "if possible, lower the temperature of the room in which the device is located.",
         )
 
     @Rule(
@@ -59,7 +59,7 @@ class BrotherDcp770DwProblemKnowledgeBase(KnowledgeEngine):
     def waste_ink(self) -> None:
         print_fault_and_solution(
             "The ink waste cartridge is too full.",
-            "Contact Brother Customer Service using the 'Contact Us' section."
+            "Contact Brother Customer Service using the 'Contact Us' section.",
         )
 
     @Rule(
@@ -67,7 +67,6 @@ class BrotherDcp770DwProblemKnowledgeBase(KnowledgeEngine):
             OR(
                 Error(code=ErrorCodeDcp770cw.E_48),
                 Error(code=ErrorCodeDcp770cw.E_4F),
-
             ),
             BrokenComponent(component_type=ComponentTypeDcp770CW.PrintHead),
         )
@@ -75,7 +74,7 @@ class BrotherDcp770DwProblemKnowledgeBase(KnowledgeEngine):
     def print_head(self) -> None:
         print_fault_and_solution(
             "There is a problem with the print head.",
-            "Contact Brother Customer Service using the 'Contact Us' section."
+            "Contact Brother Customer Service using the 'Contact Us' section.",
         )
 
     @Rule(
@@ -88,7 +87,7 @@ class BrotherDcp770DwProblemKnowledgeBase(KnowledgeEngine):
         print_fault_and_solution(
             "The internal temperature is too low.",
             "Unplug the device from the power socket and, "
-            "if possible, increase the temperature of the room in which the device is located.."
+            "if possible, increase the temperature of the room in which the device is located..",
         )
 
     @Rule(
@@ -106,14 +105,16 @@ class BrotherDcp770DwProblemKnowledgeBase(KnowledgeEngine):
             ),
             OR(
                 BrokenComponent(component_type=ComponentTypeDcp770CW.PaperTray),
-                BrokenComponent(component_type=ComponentTypeDcp770CW.PaperPositionSensor),
+                BrokenComponent(
+                    component_type=ComponentTypeDcp770CW.PaperPositionSensor
+                ),
             ),
         )
     )
     def paper_jammed_or_position_sensor(self) -> None:
         print_fault_and_solution(
             "The machine does not operate due to a paper jam or a problem with the paper position sensor.",
-            "Remove jammed sheet from paper tray"
+            "Remove jammed sheet from paper tray",
         )
 
     @Rule(
@@ -125,8 +126,7 @@ class BrotherDcp770DwProblemKnowledgeBase(KnowledgeEngine):
     def paper_transport_module_problem(self) -> None:
         print_fault_and_solution(
             "There was a problem with the paper transport module.",
-            "Contact Brother Customer Service using the 'Contact Us' section."
-
+            "Contact Brother Customer Service using the 'Contact Us' section.",
         )
 
     @Rule(
@@ -144,7 +144,7 @@ class BrotherDcp770DwProblemKnowledgeBase(KnowledgeEngine):
     def scanner(self) -> None:
         print_fault_and_solution(
             "There is a problem with the scanner.",
-            "Contact Brother Customer Service using the 'Contact Us' section."
+            "Contact Brother Customer Service using the 'Contact Us' section.",
         )
 
     @Rule(
@@ -159,5 +159,5 @@ class BrotherDcp770DwProblemKnowledgeBase(KnowledgeEngine):
     def pcb(self) -> None:
         print_fault_and_solution(
             "There is a problem with the PCB.",
-            "Contact Brother Customer Service using the 'Contact Us' section."
+            "Contact Brother Customer Service using the 'Contact Us' section.",
         )

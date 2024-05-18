@@ -38,6 +38,6 @@ def brother_printer() -> None:
     error_printer(BrotherDcp770Dw(), error_code)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # cannon_printer()
     brother_printer()

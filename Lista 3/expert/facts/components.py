@@ -9,16 +9,16 @@ class ComponentType(Enum):
 
 
 class ComponentTypeG6000(ComponentType):
-    InkCartridge = 1,
-    PrintHead = 2,
-    PrintHeadHolder = 3,
-    PaperTransportModule = 4,
-    Connectivity = 5,
-    PrintingMechanism = 6,
-    WasteInkContainer = 7,
-    FrontCassette = 8,
-    BacksidePaperTray = 9,
-    AnyPaperTray = 10,
+    InkCartridge = 1
+    PrintHead = 2
+    PrintHeadHolder = 3
+    PaperTransportModule = 4
+    Connectivity = 5
+    PrintingMechanism = 6
+    WasteInkContainer = 7
+    FrontCassette = 8
+    BacksidePaperTray = 9
+    AnyPaperTray = 10
 
 
 class ComponentTypeDcp770CW(ComponentType):
@@ -47,4 +47,5 @@ class ComponentState(Enum):
 
 class BrokenComponent(Fact):
     """Information about the printer component"""
+
     pass
