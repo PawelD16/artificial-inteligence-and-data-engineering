@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Dict, List
 
-from facts.components import ComponentType, ComponentState
+from facts.components import ComponentType, ComponentState, get_child_components
 from facts.error_code import ErrorCode
 
 
@@ -11,12 +11,16 @@ class Printer:
         self.__components: Dict[ComponentType, ComponentState] = {key: ComponentState.OK for key in components}
         self.__error_code: ErrorCode | None = error_code
 
-    def break_component(self, component: ComponentType) -> bool:
-        if component not in self.__components:
-            return False
+    def break_component(self, component_to_break: ComponentType) -> bool:
+        found = False
 
-        self.__components[component] = ComponentState.ERROR
-        return True
+        # Iterating over the entire dictionary because many flags may work!
+        for comp in self.__components.keys():
+            if component_to_break == comp or component_to_break in get_child_components(comp):
+                self.__components[comp] = ComponentState.ERROR
+                found = True
+
+        return found
 
     def get_broken_components(self) -> List[ComponentType]:
         return [component for component, state in self.__components.items() if state == ComponentState.ERROR]
@@ -29,3 +33,11 @@ class Printer:
 
     def get_error_code(self) -> ErrorCode | None:
         return self.__error_code
+
+    def __str__(self) -> str:
+        components_str = []
+        for key, value in self.__components.items():
+            components_str.append(f"{key}: {value}")
+
+        dict_str = "{\n  " + ",\n  ".join(components_str) + "\n}"
+        return f"Components: {dict_str}, ErrorCode: {self.__error_code}"

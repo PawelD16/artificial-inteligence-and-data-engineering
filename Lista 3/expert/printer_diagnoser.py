@@ -12,8 +12,14 @@ def diagnose_problem(error_code: ErrorCode = None, component_type: ComponentType
 
 
 def diagnose_printer(printer: Printer) -> None:
+    print(printer)
+
     error_code = printer.get_error_code()
     broken_components = printer.get_broken_components()
+    if len(broken_components) <= 0:
+        diagnose_problem(error_code)
 
     for broken_component in broken_components:
         diagnose_problem(error_code, broken_component)
+
+    print()

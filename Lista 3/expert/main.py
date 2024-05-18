@@ -10,7 +10,7 @@ def working_printer() -> None:
 
 def broken_printer() -> None:
     printer = Printer(get_all_component_types())
-    printer.break_component(ComponentType.FrontCassette)
+    printer.break_component(ComponentType.BacksidePaperTray)
     diagnose_printer(printer)
 
 

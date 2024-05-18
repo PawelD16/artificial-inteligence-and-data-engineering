@@ -1,20 +1,28 @@
-from enum import IntFlag, Enum
+from enum import Enum
 from typing import List
 
-from experta import Fact, Field
+from experta import Fact
 
 
-class ComponentType(IntFlag):
-    InkCartridge = 1
-    PrintHead = 2
-    PrintHeadHolder = 3
-    PaperTransportModule = 4
-    Connectivity = 5
+class ComponentType(Enum):
+    InkCartridge = 1,
+    PrintHead = 2,
+    PrintHeadHolder = 3,
+    PaperTransportModule = 4,
+    Connectivity = 5,
     PrintingMechanism = 6,
-    FrontCassette = 7
-    BacksidePaperTray = 8
-    AnyPaperTray = FrontCassette | BacksidePaperTray
-    WasteInkContainer = 9
+    WasteInkContainer = 7,
+    FrontCassette = 8,
+    BacksidePaperTray = 9,
+    AnyPaperTray = 10,
+
+
+# only one with children currently
+def get_child_components(component: ComponentType) -> List[ComponentType]:
+    if component == ComponentType.AnyPaperTray:
+        return [ComponentType.BacksidePaperTray, ComponentType.FrontCassette]
+
+    return []
 
 
 def get_all_component_types() -> List[ComponentType]:
@@ -28,4 +36,4 @@ class ComponentState(Enum):
 
 class BrokenComponent(Fact):
     """Information about the printer component"""
-    component_type = Field(ComponentType, default=lambda: None)
+    pass

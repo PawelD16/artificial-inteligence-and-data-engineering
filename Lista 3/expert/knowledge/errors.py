@@ -5,6 +5,11 @@ from facts.error_code import ErrorCode, Error
 
 
 class PrinterProblemKnowledgeBase(KnowledgeEngine):
+
+    @staticmethod
+    def print_fault_and_solution(fault: str, solution: str) -> None:
+        print(f"Fault: {fault}; Solution: {solution}")
+
     @Rule(
         OR(
             Error(code=ErrorCode.E_1300),
@@ -12,7 +17,7 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def paper_jammed_on_fetching_from_backside_tray(self) -> None:
-        print("Paper jammed: Remove jammed sheet from backside tray")
+        self.print_fault_and_solution("Paper jammed", "Remove jammed sheet from backside tray")
 
     @Rule(
         OR(
@@ -21,7 +26,7 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def paper_jammed_on_fetching_from_cassette_tray(self) -> None:
-        print("Paper jammed: Remove jammed sheet from front side cassette")
+        self.print_fault_and_solution("Paper jammed", "Remove jammed sheet from front side cassette")
 
     @Rule(
         OR(
@@ -30,7 +35,10 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def paper_jammed_on_doublesided_print(self) -> None:
-        print("Paper jammed on doublesided print: Remove jammed sheet from the printing mechanism")
+        self.print_fault_and_solution(
+            "Paper jammed on doublesided print",
+            "Remove jammed sheet from the printing mechanism"
+        )
 
     @Rule(
         OR(
@@ -39,7 +47,10 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def paper_jammed_on_already_printed_paper(self) -> None:
-        print("Already printed paper jammed: Remove jammed sheet from the top of the printing mechanism")
+        self.print_fault_and_solution(
+            "Already printed paper jammed",
+            "Remove jammed sheet from the top of the printing mechanism"
+        )
 
     @Rule(
         OR(
@@ -48,7 +59,10 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def ink_cartridge_open(self) -> None:
-        print("Ink cartridge open: Close all open cartridge valves before continuing to replace the print head")
+        self.print_fault_and_solution(
+            "Ink cartridge open",
+            "Close all open cartridge valves before continuing to replace the print head"
+        )
 
     @Rule(
         OR(
@@ -57,7 +71,10 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def ink_cartridge_closed(self) -> None:
-        print("Ink cartridge closed: Open all closed cartridge valves before continuing with printing")
+        self.print_fault_and_solution(
+            "Ink cartridge closed",
+            "Open all closed cartridge valves before continuing with printing"
+        )
 
     @Rule(
         OR(
@@ -66,7 +83,7 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def not_enough_ink_to_flush(self) -> None:
-        print("Not enough ink to flush: Add missing ink")
+        self.print_fault_and_solution("Not enough ink to flush", "Add missing ink")
 
     @Rule(
         OR(
@@ -81,9 +98,9 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def print_head_not_recognized(self) -> None:
-        print(
-            "Print head not recognized: Print head might be corrupted or counterfeit. "
-            "Replace with correct print head"
+        self.print_fault_and_solution(
+            "Print head not recognized",
+            "Print head might be corrupted or counterfeit. Replace with correct print head"
         )
 
     @Rule(
@@ -93,7 +110,7 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def print_head_inserted_incorrectly(self) -> None:
-        print("Print head inserted incorrectly: Reseat the print head")
+        self.print_fault_and_solution("Print head inserted incorrectly", "Reseat the print head")
 
     @Rule(
         OR(
@@ -102,7 +119,10 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def incorrect_print_head(self) -> None:
-        print("Incorrect pint head: Check if your print head model is supported by the printer")
+        self.print_fault_and_solution(
+            "Incorrect pint head",
+            "Check if your print head model is supported by the printer"
+        )
 
     @Rule(
         OR(
@@ -111,8 +131,8 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def low_ink_level(self) -> None:
-        print(
-            "Low ink level: "
+        self.print_fault_and_solution(
+            "Low ink level",
             "The level of remaining ink in one of the ink tanks "
             "may have equaled the lower limit line shown on the ink tank."
             "Add ink"
@@ -125,7 +145,10 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def not_enough_ink(self) -> None:
-        print("Not enough ink to print: The amount of ink might not be enough to print. Add ink")
+        self.print_fault_and_solution(
+            "Not enough ink to print",
+            "The amount of ink might not be enough to print. Add ink"
+        )
 
     @Rule(
         OR(
@@ -136,7 +159,7 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def waste_ink_container_almost_full(self) -> None:
-        print("Waste ink container is amost full: Empty it before continuing")
+        self.print_fault_and_solution("Waste ink container is amost full", "Empty it before continuing")
 
     @Rule(
         OR(
@@ -145,8 +168,8 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def print_head_holder_covered(self) -> None:
-        print(
-            "Print head holder covered: "
+        self.print_fault_and_solution(
+            "Print head holder covered",
             "It may be covered with residual protective film. "
             "Remove the film before continuing"
         )
@@ -212,7 +235,10 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def printer_error(self) -> None:
-        print("Printer error: Unplug OR replug the printer. If that doesn't help contact the manufacturer")
+        self.print_fault_and_solution(
+            "Printer error",
+            "Unplug and replug the printer. If that doesn't help contact the manufacturer"
+        )
 
     @Rule(
         OR(
@@ -221,8 +247,9 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def printer_error_print_head(self) -> None:
-        print(
-            "Printer error: Cancel current print by pressing Stop OR turn the printer off. "
+        self.print_fault_and_solution(
+            "Printer error",
+            "Cancel current print by pressing Stop OR turn the printer off. "
             "Check print head movement OR remove any obstructions. Turn on the printer."
         )
 
@@ -233,7 +260,7 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def printer_error_ink(self) -> None:
-        print("Printer error: Add ink if necessary")
+        self.print_fault_and_solution("Printer error", "Add ink if necessary")
 
     @Rule(
         OR(
@@ -242,12 +269,13 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def printer_error_critical(self) -> None:
-        print("Printer error: Contact the manufacturer")
+        self.print_fault_and_solution("Printer error", "Contact the manufacturer")
 
     @Rule(Error(code=ErrorCode.E_6000))
     def printer_error_paper_jam(self) -> None:
-        print(
-            "Printer error: Remove paper jam OR unplug OR replug the printer. "
+        self.print_fault_and_solution(
+            "Printer error",
+            "Remove paper jam OR unplug and replug the printer. "
             "If that doesn't help contact the manufacture"
         )
 
@@ -261,8 +289,9 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def printer_error_transport_module(self) -> None:
-        print(
-            "Printer error: Paper may be jammed in the paper transport module. "
+        self.print_fault_and_solution(
+            "Printer error",
+            "Paper may be jammed in the paper transport module. "
             "Remove jammed sheet from front side cassette."
             "If that doesn't help contact the manufacture"
         )
@@ -276,7 +305,10 @@ class PrinterProblemKnowledgeBase(KnowledgeEngine):
         )
     )
     def printer_error_require_repair(self) -> None:
-        print("Printer error requiring repair: Unplug the printer OR contact the manufacturer")
+        self.print_fault_and_solution(
+            "Printer error requiring repair",
+            "Unplug the printer and contact the manufacturer"
+        )
 
     @Rule(
         AND(

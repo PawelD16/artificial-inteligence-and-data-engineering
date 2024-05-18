@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List
+from typing import List, Optional
 
 from experta import Fact, Field
 
@@ -82,4 +82,4 @@ class ErrorCode(Enum):
 
 class Error(Fact):
     """Represents the error returned by a device or component"""
-    code = Field(ErrorCode, default=None)
+    pass
