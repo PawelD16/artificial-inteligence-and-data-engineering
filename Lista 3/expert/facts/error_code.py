@@ -1,12 +1,13 @@
 from enum import Enum
-from typing import List, Optional
 
-from experta import Fact, Field
-
-from facts.components import ComponentType
+from experta import Fact
 
 
 class ErrorCode(Enum):
+    pass
+
+
+class ErrorCodeG6000(ErrorCode):
     E_1300 = 0
     E_1303 = 1
     E_1304 = 2
@@ -78,6 +79,46 @@ class ErrorCode(Enum):
     E_7800 = 69
     E_C000 = 70
     E_1470 = 71  # rip bozo
+
+
+class ErrorCodeDcp770cw(ErrorCode):
+    E_30 = 1
+    E_31 = 2
+    E_32 = 3
+    E_33 = 4
+    E_34 = 5
+    E_35 = 6
+    E_36 = 7
+    E_37 = 8
+    E_38 = 9
+    E_39 = 10
+    E_3C = 11
+    E_3F = 12
+    E_40 = 13
+    E_42 = 14
+    E_43 = 15
+    E_44 = 16
+    E_46 = 17
+    E_48 = 18
+    E_49 = 19
+    E_4F = 20
+    E_50 = 21
+    E_51 = 22
+    E_52 = 23
+    E_57 = 24
+    E_5A = 25
+    E_5B = 26
+    E_5C = 27
+    E_5D = 28
+    E_5E = 29
+    E_8F = 30
+    E_A5 = 31
+    E_A6 = 32
+    E_A7 = 33
+    E_A8 = 34
+    E_AF = 35
+    E_E2 = 36
+    E_E3 = 37
 
 
 class Error(Fact):

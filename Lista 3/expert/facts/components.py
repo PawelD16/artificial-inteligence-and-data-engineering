@@ -5,6 +5,10 @@ from experta import Fact
 
 
 class ComponentType(Enum):
+    pass
+
+
+class ComponentTypeG6000(ComponentType):
     InkCartridge = 1,
     PrintHead = 2,
     PrintHeadHolder = 3,
@@ -17,16 +21,23 @@ class ComponentType(Enum):
     AnyPaperTray = 10,
 
 
-# only one with children currently
-def get_child_components(component: ComponentType) -> List[ComponentType]:
-    if component == ComponentType.AnyPaperTray:
-        return [ComponentType.BacksidePaperTray, ComponentType.FrontCassette]
+class ComponentTypeDcp770CW(ComponentType):
+    PaperTray = 1
+    TemperatureSensor = 2
+    WasteInkCartridge = 3
+    PrintHead = 4
+    PaperTransportModule = 5
+    Scanner = 6
+    PCB = 7
+    PaperPositionSensor = 8
 
-    return []
+
+def get_all_component_types_g6000() -> List[ComponentTypeG6000]:
+    return list(ComponentTypeG6000.__members__.values())
 
 
-def get_all_component_types() -> List[ComponentType]:
-    return list(ComponentType.__members__.values())
+def get_all_component_types_dcp_770_cw() -> List[ComponentTypeDcp770CW]:
+    return list(ComponentTypeDcp770CW.__members__.values())
 
 
 class ComponentState(Enum):

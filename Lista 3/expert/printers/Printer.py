@@ -1,22 +1,33 @@
 from __future__ import annotations
 
-from typing import Dict, List
+from abc import ABC, abstractmethod
+from typing import List, Dict
 
-from facts.components import ComponentType, ComponentState, get_child_components
+from experta import KnowledgeEngine
+
+from facts.components import ComponentState, ComponentType
 from facts.error_code import ErrorCode
 
 
-class Printer:
+class Printer(ABC):
     def __init__(self, components: List[ComponentType], error_code: ErrorCode = None) -> None:
         self.__components: Dict[ComponentType, ComponentState] = {key: ComponentState.OK for key in components}
         self.__error_code: ErrorCode | None = error_code
+
+    @abstractmethod
+    def get_child_components(self, component: ComponentType) -> List[ComponentType]:
+        pass
+
+    @abstractmethod
+    def get_knowledge_engine(self) -> KnowledgeEngine:
+        pass
 
     def break_component(self, component_to_break: ComponentType) -> bool:
         found = False
 
         # Iterating over the entire dictionary because many flags may work!
         for comp in self.__components.keys():
-            if component_to_break == comp or component_to_break in get_child_components(comp):
+            if component_to_break == comp or component_to_break in self.get_child_components(comp):
                 self.__components[comp] = ComponentState.ERROR
                 found = True
 
