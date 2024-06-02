@@ -13,7 +13,9 @@ def get_all_classifiers_with_hyperparameters(
     hyperparameters: Dict[str, Dict[str, Any]]
 ) -> Dict[str, Any]:
     return {
-        "Naive Bayes": GaussianNB(**hyperparameters.get("Naive Bayes", {})),
+        "Naive Bayes": GaussianNB(
+            **hyperparameters.get("Naive Bayes", {})
+        ),
         "Decision Tree": DecisionTreeClassifier(
             **hyperparameters.get("Decision Tree", {})
         ),

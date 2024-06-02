@@ -1,0 +1,605 @@
+________________HYPERPARAMETER DEFAULT SET________________
+________________SPLIT TO TEST AND TRAIN NO PREPROCESSING________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66775 
+	Precision: 0.6873958701798246 
+	Recall: 0.66775 
+	F1 Score: 0.6384179477547259 
+
+Results for Decision Tree: 
+	Accuracy: 0.972 
+	Precision: 0.9719033944023615 
+	Recall: 0.972 
+	F1 Score: 0.9719261577097437 
+
+Results for Random Forest: 
+	Accuracy: 0.971 
+	Precision: 0.9710169240594123 
+	Recall: 0.971 
+	F1 Score: 0.9709668539041739 
+
+Results for SVM: 
+	Accuracy: 0.7915 
+	Precision: 0.7990376772732843 
+	Recall: 0.7915 
+	F1 Score: 0.7909661036005883 
+________________SPLIT TO TEST AND TRAIN STD________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66775 
+	Precision: 0.6873958701798246 
+	Recall: 0.66775 
+	F1 Score: 0.6384179477547259 
+
+Results for Decision Tree: 
+	Accuracy: 0.972 
+	Precision: 0.9719033944023615 
+	Recall: 0.972 
+	F1 Score: 0.9719261577097437 
+
+Results for Random Forest: 
+	Accuracy: 0.972 
+	Precision: 0.9719033944023615 
+	Recall: 0.972 
+	F1 Score: 0.9719261577097437 
+
+Results for SVM: 
+	Accuracy: 0.82 
+	Precision: 0.8210558463763415 
+	Recall: 0.82 
+	F1 Score: 0.8177454031994077 
+________________SPLIT TO TEST AND TRAIN PCA________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66725 
+	Precision: 0.686179084123723 
+	Recall: 0.66725 
+	F1 Score: 0.6373860589688319 
+
+Results for Decision Tree: 
+	Accuracy: 0.972 
+	Precision: 0.9719033944023615 
+	Recall: 0.972 
+	F1 Score: 0.9719261577097437 
+
+Results for Random Forest: 
+	Accuracy: 0.97275 
+	Precision: 0.9726696330720176 
+	Recall: 0.97275 
+	F1 Score: 0.9726610149496224 
+
+Results for SVM: 
+	Accuracy: 0.8135 
+	Precision: 0.8170077484735202 
+	Recall: 0.8135 
+	F1 Score: 0.8136777769871767 
+________________SPLIT BY K-FOLD NO PREPROCESSING________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.6618499999999999 
+	Precision: 0.6761060585233494 
+	Recall: 0.6618499999999999 
+	F1 Score: 0.6339393014722825 
+
+Results for Decision Tree: 
+	Accuracy: 0.9708 
+	Precision: 0.9709825419346192 
+	Recall: 0.9708 
+	F1 Score: 0.9707857532485733 
+
+Results for Random Forest: 
+	Accuracy: 0.9709999999999999 
+	Precision: 0.9710660004095997 
+	Recall: 0.9715999999999999 
+	F1 Score: 0.9710184113154217 
+
+Results for SVM: 
+	Accuracy: 0.77805 
+	Precision: 0.7864094710314913 
+	Recall: 0.77805 
+	F1 Score: 0.7772914256005462 
+________________SPLIT BY K-FOLD STD________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.6618499999999999 
+	Precision: 0.6761060585233494 
+	Recall: 0.6618499999999999 
+	F1 Score: 0.6339393014722825 
+
+Results for Decision Tree: 
+	Accuracy: 0.9708 
+	Precision: 0.9709825419346192 
+	Recall: 0.9708 
+	F1 Score: 0.9707857532485733 
+
+Results for Random Forest: 
+	Accuracy: 0.9708500000000001 
+	Precision: 0.9706417004027266 
+	Recall: 0.9711500000000001 
+	F1 Score: 0.9711149053507203 
+
+Results for SVM: 
+	Accuracy: 0.8087499999999999 
+	Precision: 0.8102272791966112 
+	Recall: 0.8087499999999999 
+	F1 Score: 0.8059795660283882 
+________________SPLIT BY K-FOLD PCA________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66075 
+	Precision: 0.6748013169274099 
+	Recall: 0.66075 
+	F1 Score: 0.6327209922351125 
+
+Results for Decision Tree: 
+	Accuracy: 0.9708 
+	Precision: 0.9709825419346192 
+	Recall: 0.9708 
+	F1 Score: 0.9707857532485733 
+
+Results for Random Forest: 
+	Accuracy: 0.9713 
+	Precision: 0.9711750555082602 
+	Recall: 0.9716000000000001 
+	F1 Score: 0.9705252303774656 
+
+Results for SVM: 
+	Accuracy: 0.8078 
+	Precision: 0.8110358974955465 
+	Recall: 0.8078 
+	F1 Score: 0.8079231948143619 
+________________HYPERPARAMETER SET 1________________
+________________SPLIT TO TEST AND TRAIN NO PREPROCESSING________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66775 
+	Precision: 0.6873958701798246 
+	Recall: 0.66775 
+	F1 Score: 0.6384179477547259 
+
+Results for Decision Tree: 
+	Accuracy: 0.75625 
+	Precision: 0.7625581773036396 
+	Recall: 0.75625 
+	F1 Score: 0.7556794041748987 
+
+Results for Random Forest: 
+	Accuracy: 0.97225 
+	Precision: 0.9723470728522671 
+	Recall: 0.97225 
+	F1 Score: 0.972180487490491 
+
+Results for SVM: 
+	Accuracy: 0.7915 
+	Precision: 0.7990376772732843 
+	Recall: 0.7915 
+	F1 Score: 0.7909661036005883 
+________________SPLIT TO TEST AND TRAIN STD________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66775 
+	Precision: 0.6873958701798246 
+	Recall: 0.66775 
+	F1 Score: 0.6384179477547259 
+
+Results for Decision Tree: 
+	Accuracy: 0.75625 
+	Precision: 0.7625581773036396 
+	Recall: 0.75625 
+	F1 Score: 0.7556794041748987 
+
+Results for Random Forest: 
+	Accuracy: 0.97225 
+	Precision: 0.9723470728522671 
+	Recall: 0.97225 
+	F1 Score: 0.972180487490491 
+
+Results for SVM: 
+	Accuracy: 0.82 
+	Precision: 0.8210558463763415 
+	Recall: 0.82 
+	F1 Score: 0.8177454031994077 
+________________SPLIT TO TEST AND TRAIN PCA________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66725 
+	Precision: 0.686179084123723 
+	Recall: 0.66725 
+	F1 Score: 0.6373860589688319 
+
+Results for Decision Tree: 
+	Accuracy: 0.75425 
+	Precision: 0.7685478567564855 
+	Recall: 0.75425 
+	F1 Score: 0.7487895766262889 
+
+Results for Random Forest: 
+	Accuracy: 0.97225 
+	Precision: 0.9723470728522671 
+	Recall: 0.97225 
+	F1 Score: 0.972180487490491 
+
+Results for SVM: 
+	Accuracy: 0.8135 
+	Precision: 0.8170077484735202 
+	Recall: 0.8135 
+	F1 Score: 0.8136777769871767 
+________________SPLIT BY K-FOLD NO PREPROCESSING________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.6618499999999999 
+	Precision: 0.6761060585233494 
+	Recall: 0.6618499999999999 
+	F1 Score: 0.6339393014722825 
+
+Results for Decision Tree: 
+	Accuracy: 0.7526 
+	Precision: 0.7593945190024283 
+	Recall: 0.7526 
+	F1 Score: 0.7520441207340578 
+
+Results for Random Forest: 
+	Accuracy: 0.9709 
+	Precision: 0.9710493263420904 
+	Recall: 0.9709 
+	F1 Score: 0.970889748573345 
+
+Results for SVM: 
+	Accuracy: 0.77805 
+	Precision: 0.7864094710314913 
+	Recall: 0.77805 
+	F1 Score: 0.7772914256005462 
+________________SPLIT BY K-FOLD STD________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.6618499999999999 
+	Precision: 0.6761060585233494 
+	Recall: 0.6618499999999999 
+	F1 Score: 0.6339393014722825 
+
+Results for Decision Tree: 
+	Accuracy: 0.7526 
+	Precision: 0.7593945190024283 
+	Recall: 0.7526 
+	F1 Score: 0.7520441207340578 
+
+Results for Random Forest: 
+	Accuracy: 0.9709 
+	Precision: 0.9710493263420904 
+	Recall: 0.9709 
+	F1 Score: 0.970889748573345 
+
+Results for SVM: 
+	Accuracy: 0.8087499999999999 
+	Precision: 0.8102272791966112 
+	Recall: 0.8087499999999999 
+	F1 Score: 0.8059795660283882 
+________________SPLIT BY K-FOLD PCA________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66075 
+	Precision: 0.6748013169274099 
+	Recall: 0.66075 
+	F1 Score: 0.6327209922351125 
+
+Results for Decision Tree: 
+	Accuracy: 0.7496999999999999 
+	Precision: 0.7654575452069012 
+	Recall: 0.7496999999999999 
+	F1 Score: 0.7414351481584771 
+
+Results for Random Forest: 
+	Accuracy: 0.9709 
+	Precision: 0.9710493263420904 
+	Recall: 0.9709 
+	F1 Score: 0.970889748573345 
+
+Results for SVM: 
+	Accuracy: 0.8078 
+	Precision: 0.8110358974955465 
+	Recall: 0.8078 
+	F1 Score: 0.8079231948143619 
+________________HYPERPARAMETER SET 2________________
+________________SPLIT TO TEST AND TRAIN NO PREPROCESSING________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66775 
+	Precision: 0.6873958701798246 
+	Recall: 0.66775 
+	F1 Score: 0.6384179477547259 
+
+Results for Decision Tree: 
+	Accuracy: 0.77575 
+	Precision: 0.8182124046817683 
+	Recall: 0.77575 
+	F1 Score: 0.7738957998077997 
+
+Results for Random Forest: 
+	Accuracy: 0.97175 
+	Precision: 0.9717925412224163 
+	Recall: 0.97175 
+	F1 Score: 0.9717002944359999 
+
+Results for SVM: 
+	Accuracy: 0.65875 
+	Precision: 0.583821051830263 
+	Recall: 0.65875 
+	F1 Score: 0.6189749030498024 
+________________SPLIT TO TEST AND TRAIN STD________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66775 
+	Precision: 0.6873958701798246 
+	Recall: 0.66775 
+	F1 Score: 0.6384179477547259 
+
+Results for Decision Tree: 
+	Accuracy: 0.77575 
+	Precision: 0.8182124046817683 
+	Recall: 0.77575 
+	F1 Score: 0.7738957998077997 
+
+Results for Random Forest: 
+	Accuracy: 0.97175 
+	Precision: 0.9717925412224163 
+	Recall: 0.97175 
+	F1 Score: 0.9717002944359999 
+
+Results for SVM: 
+	Accuracy: 0.65875 
+	Precision: 0.583821051830263 
+	Recall: 0.65875 
+	F1 Score: 0.6189749030498024 
+________________SPLIT TO TEST AND TRAIN PCA________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66725 
+	Precision: 0.686179084123723 
+	Recall: 0.66725 
+	F1 Score: 0.6373860589688319 
+
+Results for Decision Tree: 
+	Accuracy: 0.78525 
+	Precision: 0.8117579885102275 
+	Recall: 0.78525 
+	F1 Score: 0.7839687473475719 
+
+Results for Random Forest: 
+	Accuracy: 0.97175 
+	Precision: 0.9717925412224163 
+	Recall: 0.97175 
+	F1 Score: 0.9717002944359999 
+
+Results for SVM: 
+	Accuracy: 0.65875 
+	Precision: 0.583821051830263 
+	Recall: 0.65875 
+	F1 Score: 0.6189749030498024 
+________________SPLIT BY K-FOLD NO PREPROCESSING________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.6618499999999999 
+	Precision: 0.6761060585233494 
+	Recall: 0.6618499999999999 
+	F1 Score: 0.6339393014722825 
+
+Results for Decision Tree: 
+	Accuracy: 0.76505 
+	Precision: 0.8104897932319929 
+	Recall: 0.76505 
+	F1 Score: 0.7620518713894493 
+
+Results for Random Forest: 
+	Accuracy: 0.97095 
+	Precision: 0.9710598052580905 
+	Recall: 0.97095 
+	F1 Score: 0.970936343947263 
+
+Results for SVM: 
+	Accuracy: 0.6526 
+	Precision: 0.5772407081046765 
+	Recall: 0.6526 
+	F1 Score: 0.612494317233877 
+________________SPLIT BY K-FOLD STD________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.6618499999999999 
+	Precision: 0.6761060585233494 
+	Recall: 0.6618499999999999 
+	F1 Score: 0.6339393014722825 
+
+Results for Decision Tree: 
+	Accuracy: 0.76505 
+	Precision: 0.8104897932319929 
+	Recall: 0.76505 
+	F1 Score: 0.7620518713894493 
+
+Results for Random Forest: 
+	Accuracy: 0.97095 
+	Precision: 0.9710598052580905 
+	Recall: 0.97095 
+	F1 Score: 0.970936343947263 
+
+Results for SVM: 
+	Accuracy: 0.6526 
+	Precision: 0.5772407081046765 
+	Recall: 0.6526 
+	F1 Score: 0.612494317233877 
+________________SPLIT BY K-FOLD PCA________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66075 
+	Precision: 0.6748013169274099 
+	Recall: 0.66075 
+	F1 Score: 0.6327209922351125 
+
+Results for Decision Tree: 
+	Accuracy: 0.7988 
+	Precision: 0.8215658517896344 
+	Recall: 0.7988 
+	F1 Score: 0.7974716642585366 
+
+Results for Random Forest: 
+	Accuracy: 0.9710000000000001 
+	Precision: 0.9711111698422783 
+	Recall: 0.9710000000000001 
+	F1 Score: 0.9709868031398114 
+
+Results for SVM: 
+	Accuracy: 0.6526 
+	Precision: 0.5772407081046765 
+	Recall: 0.6526 
+	F1 Score: 0.612494317233877 
+________________HYPERPARAMETER SET 3________________
+________________SPLIT TO TEST AND TRAIN NO PREPROCESSING________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66775 
+	Precision: 0.6873958701798246 
+	Recall: 0.66775 
+	F1 Score: 0.6384179477547259 
+
+Results for Decision Tree: 
+	Accuracy: 0.85975 
+	Precision: 0.8618626706975097 
+	Recall: 0.85975 
+	F1 Score: 0.8596213726910418 
+
+Results for Random Forest: 
+	Accuracy: 0.952 
+	Precision: 0.9524307132533556 
+	Recall: 0.952 
+	F1 Score: 0.9515825916038184 
+
+Results for SVM: 
+	Accuracy: 0.74925 
+	Precision: 0.7586026618955083 
+	Recall: 0.74925 
+	F1 Score: 0.7439395710877171 
+________________SPLIT TO TEST AND TRAIN STD________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66775 
+	Precision: 0.6873958701798246 
+	Recall: 0.66775 
+	F1 Score: 0.6384179477547259 
+
+Results for Decision Tree: 
+	Accuracy: 0.85975 
+	Precision: 0.8618626706975097 
+	Recall: 0.85975 
+	F1 Score: 0.8596213726910418 
+
+Results for Random Forest: 
+	Accuracy: 0.952 
+	Precision: 0.9524307132533556 
+	Recall: 0.952 
+	F1 Score: 0.9515825916038184 
+
+Results for SVM: 
+	Accuracy: 0.749 
+	Precision: 0.7535841882034106 
+	Recall: 0.749 
+	F1 Score: 0.7417970513231469 
+________________SPLIT TO TEST AND TRAIN PCA________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66725 
+	Precision: 0.686179084123723 
+	Recall: 0.66725 
+	F1 Score: 0.6373860589688319 
+
+Results for Decision Tree: 
+	Accuracy: 0.835 
+	Precision: 0.8355061568169055 
+	Recall: 0.835 
+	F1 Score: 0.8337286141743983 
+
+Results for Random Forest: 
+	Accuracy: 0.95625 
+	Precision: 0.9577800183301786 
+	Recall: 0.95625 
+	F1 Score: 0.9558621932111312 
+
+Results for SVM: 
+	Accuracy: 0.7145 
+	Precision: 0.720852106537199 
+	Recall: 0.7145 
+	F1 Score: 0.7082012514283844 
+________________SPLIT BY K-FOLD NO PREPROCESSING________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.6618499999999999 
+	Precision: 0.6761060585233494 
+	Recall: 0.6618499999999999 
+	F1 Score: 0.6339393014722825 
+
+Results for Decision Tree: 
+	Accuracy: 0.8471 
+	Precision: 0.8523857428467674 
+	Recall: 0.8471 
+	F1 Score: 0.8474173226674108 
+
+Results for Random Forest: 
+	Accuracy: 0.9480999999999999 
+	Precision: 0.9487327925351533 
+	Recall: 0.9480999999999999 
+	F1 Score: 0.9478461729347973 
+
+Results for SVM: 
+	Accuracy: 0.748 
+	Precision: 0.7567744876672181 
+	Recall: 0.748 
+	F1 Score: 0.7423780675308018 
+________________SPLIT BY K-FOLD STD________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.6618499999999999 
+	Precision: 0.6761060585233494 
+	Recall: 0.6618499999999999 
+	F1 Score: 0.6339393014722825 
+
+Results for Decision Tree: 
+	Accuracy: 0.8471 
+	Precision: 0.8523857428467674 
+	Recall: 0.8471 
+	F1 Score: 0.8474173226674108 
+
+Results for Random Forest: 
+	Accuracy: 0.9480999999999999 
+	Precision: 0.9487327925351533 
+	Recall: 0.9480999999999999 
+	F1 Score: 0.9478461729347973 
+
+Results for SVM: 
+	Accuracy: 0.7477 
+	Precision: 0.7509872785982155 
+	Recall: 0.7477 
+	F1 Score: 0.7403888770787049 
+________________SPLIT BY K-FOLD PCA________________
+
+Results for Naive Bayes: 
+	Accuracy: 0.66075 
+	Precision: 0.6748013169274099 
+	Recall: 0.66075 
+	F1 Score: 0.6327209922351125 
+
+Results for Decision Tree: 
+	Accuracy: 0.84535 
+	Precision: 0.850506417584706 
+	Recall: 0.84535 
+	F1 Score: 0.8453841961252184 
+
+Results for Random Forest: 
+	Accuracy: 0.94665 
+	Precision: 0.947805783588267 
+	Recall: 0.94665 
+	F1 Score: 0.9463046299460395 
+
+Results for SVM: 
+	Accuracy: 0.7127000000000001 
+	Precision: 0.7175644065697727 
+	Recall: 0.7127000000000001 
+	F1 Score: 0.7056228725031695 
+
