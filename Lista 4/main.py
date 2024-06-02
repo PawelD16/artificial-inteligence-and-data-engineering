@@ -1,4 +1,4 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Callable, Tuple
 
 import pandas as pd
 
@@ -32,8 +32,34 @@ classifiers_2 = get_all_classifiers_with_hyperparameters(hyperparameters_2)
 classifiers_3 = get_all_classifiers_with_hyperparameters(hyperparameters_3)
 
 
-def std_and_pca_split_to_test_and_train(
+def no_preprocessing_split_to_test_and_train(
     data_frame: pd.DataFrame, classifiers: Dict[str, Any]
+) -> List[ResultTestAndPredLabels]:
+
+    return run_split_to_test_and_train_with_preprocessing_fn(
+        data_frame, classifiers, lambda x, y, i: (x, y)
+    )
+
+
+def std_split_to_test_and_train(
+    data_frame: pd.DataFrame, classifiers: Dict[str, Any]
+) -> List[ResultTestAndPredLabels]:
+
+    return run_split_to_test_and_train_with_preprocessing_fn(
+        data_frame, classifiers, lambda x, y, i: standardize_data(x, y)
+    )
+
+
+def pca_split_to_test_and_train(
+    data_frame: pd.DataFrame, classifiers: Dict[str, Any]
+) -> List[ResultTestAndPredLabels]:
+    return run_split_to_test_and_train_with_preprocessing_fn(data_frame, classifiers, apply_pca)
+
+
+def run_split_to_test_and_train_with_preprocessing_fn(
+    data_frame: pd.DataFrame,
+    classifiers: Dict[str, Any],
+    preprocessing_fn: Callable[[pd.DataFrame, pd.DataFrame, int], Tuple[pd.DataFrame, pd.DataFrame]]
 ) -> List[ResultTestAndPredLabels]:
     data, labels = split_into_data_and_labels(data_frame, target_column_name)
 
@@ -41,33 +67,61 @@ def std_and_pca_split_to_test_and_train(
         split_data_into_training_and_test(data, labels)
     )
 
-    data_train_std, data_test_std = standardize_data(data_train, data_test)
-    data_train_pca, data_test_pca = apply_pca(data_train_std, data_test_std, 4)
+    data_train_preprocessed, data_test_preprocessed = preprocessing_fn(data_train, data_test, 4)
 
     return run_all_classifiers(
-        data_train_pca, data_test_pca, train_labels, test_labels, classifiers
+        data_train_preprocessed, data_test_preprocessed, train_labels, test_labels, classifiers
     )
 
 
-def std_and_pca_k_fold(
+def no_preprocessing_k_fold(
     data_frame: pd.DataFrame, classifiers: Dict[str, Any]
+) -> List[ResultCrossVal]:
+    return run_k_fold_with_preprocessing_fn(data_frame, classifiers, lambda x, i: x)
+
+
+def std_k_fold(
+    data_frame: pd.DataFrame, classifiers: Dict[str, Any]
+) -> List[ResultCrossVal]:
+    return run_k_fold_with_preprocessing_fn(data_frame, classifiers, lambda x, i: standardize_data(x)[0])
+
+
+def pca_k_fold(
+    data_frame: pd.DataFrame, classifiers: Dict[str, Any]
+) -> List[ResultCrossVal]:
+    return run_k_fold_with_preprocessing_fn(data_frame, classifiers, lambda x, i: apply_pca(x, n_components=i)[0])
+
+
+def run_k_fold_with_preprocessing_fn(
+    data_frame: pd.DataFrame, classifiers: Dict[str, Any], preprocessing_fn: Callable[[pd.DataFrame, int], pd.DataFrame]
 ) -> List[ResultCrossVal]:
     data, labels = split_into_data_and_labels(data_frame, target_column_name)
 
     k_fold = get_k_fold_cross_validation()
 
-    data_std, _ = standardize_data(data)
-    data_pca, _ = apply_pca(data_std, n_components=4)
+    data_preprocessed = preprocessing_fn(data, 4)
 
-    return run_all_classifier_cross_val(data_pca, labels, k_fold, classifiers)
+    return run_all_classifier_cross_val(data_preprocessed, labels, k_fold, classifiers)
 
 
 def run_with_classifier(data_frame: pd.DataFrame, classifiers: Dict[str, Any]) -> None:
-    print("________________SPLIT TO TEST AND TRAIN________________")
-    print_list_newline(std_and_pca_split_to_test_and_train(data_frame, classifiers))
+    print("________________SPLIT TO TEST AND TRAIN NO PREPROCESSING________________")
+    print_list_newline(no_preprocessing_split_to_test_and_train(data_frame, classifiers))
 
-    print("________________SPLIT BY K-FOLD________________")
-    print_list_newline(std_and_pca_k_fold(data_frame, classifiers))
+    print("________________SPLIT TO TEST AND TRAIN STD________________")
+    print_list_newline(std_split_to_test_and_train(data_frame, classifiers))
+
+    print("________________SPLIT TO TEST AND TRAIN PCA________________")
+    print_list_newline(pca_split_to_test_and_train(data_frame, classifiers))
+
+    print("________________SPLIT BY K-FOLD NO PREPROCESSING________________")
+    print_list_newline(no_preprocessing_k_fold(data_frame, classifiers))
+
+    print("________________SPLIT BY K-FOLD STD________________")
+    print_list_newline(std_k_fold(data_frame, classifiers))
+
+    print("________________SPLIT BY K-FOLD PCA________________")
+    print_list_newline(pca_k_fold(data_frame, classifiers))
 
 
 def main() -> None:
