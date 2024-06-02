@@ -1,4 +1,5 @@
 *.csv
+!t-shirts.csv
 .idea
 __pycache__
 *.pyc
