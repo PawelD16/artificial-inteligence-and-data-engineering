@@ -1,6 +1,8 @@
 from typing import List
 
+import numpy as np
 import pandas as pd
+import fasttext.util
 
 from utils import (
     import_jokes,
@@ -13,9 +15,11 @@ from utils import (
 )
 from sentence_transformers import SentenceTransformer
 
+# fasttext URI: https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.en.300.bin.gz
 # dataset URI: https://eigentaste.berkeley.edu/dataset/
 
-MODEL_NAME = "bert-base-cased"
+MODEL_NAME_BERT = "bert-base-cased"
+FILE_NAME_FASTTEXT = "cc.en.300.bin"
 
 LEARNING_RATES = [0.00001, 0.0001, 0.001, 0.005]
 SIZES = [(20,), (100,), (100, 100), (200, 200, 200)]
@@ -64,12 +68,11 @@ def test_my_jokes(
         print(predict_joke_rating(own_joke))
 
 
-def main() -> None:
+def run_model(model, generate_embeddings) -> None:
     jokes = get_and_describe_jokes()
     ratings = get_and_describe_ratings()
 
-    model = SentenceTransformer(MODEL_NAME)
-    encoded_jokes = model.encode(jokes)
+    encoded_jokes = generate_embeddings(jokes, model)
     print(encoded_jokes.shape)
 
     x_train, y_train, x_test, y_test = split_dataset(encoded_jokes, ratings)
@@ -79,6 +82,21 @@ def main() -> None:
     test_sizes(SIZES, x_train, y_train, x_test, y_test)
 
     test_my_jokes(model, x_train, y_train, x_test, y_test)
+
+
+def main() -> None:
+    print("FASTTEXT")
+    run_model(
+        fasttext.load_model(FILE_NAME_FASTTEXT),
+        lambda data, model: np.array(
+            [model.get_sentence_vector(text) for text in data]
+        ),
+    )
+
+    print("BERT")
+    run_model(
+        SentenceTransformer(MODEL_NAME_BERT), lambda data, model: model.encode(data)
+    )
 
 
 if __name__ == "__main__":
